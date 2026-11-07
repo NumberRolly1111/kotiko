@@ -58,7 +58,7 @@ svg { display: block; }
 .btn--butter { --bg: var(--butter); }
 .btn--white { --bg: #fff; }
 .btn--ink { --bg: var(--ink); --fg: #fff; --shc: var(--tang); }
-.section--ink .btn { --shc: var(--butter); border-color: var(--paper); }
+.section--ink .btn { --shc: var(--butter); border-color: #fffbf2; }
 .section--ink .btn--white { --shc: var(--tang); }
 
 /* top bar */
@@ -209,7 +209,7 @@ svg { display: block; }
 .section--tang { background: var(--tang); }
 .section--orange { background: var(--tang); overflow: hidden; }
 .section--ink .lead { color: #c9c3dc; }
-.section--ink { background: var(--ink); color: var(--paper); }
+.section--ink { background: var(--ink); color: #fffbf2; }
 
 .sticker {
   background: #fff; border: var(--bw) solid var(--ink); border-radius: 26px; box-shadow: var(--sh);
@@ -522,3 +522,15 @@ main > .section:first-child { min-height: 70vh; }
 
 /* photo placeholder: paw instead of a drawn cat */
 .cat__ava svg.ava-paw { width: 52%; height: 52%; margin: auto; fill: var(--ink); opacity: .85; filter: none; overflow: visible; }
+
+/* footer like study on */
+.footer { border-top: 6px solid var(--butter); background: #120d22; color: #a7a0bd; font-size: 15px; }
+.footer__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 28px; padding-block: 32px 26px; border-bottom: 1px solid rgba(255,255,255,.14); }
+.footer__logo { color: #fffbf2; flex: none; }
+.footer__nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px 26px; max-width: 560px; }
+.footer__nav a { text-decoration: none; color: #c9c3dc; }
+.footer__nav a:hover { color: var(--butter); }
+.footer__copy { margin: 0 auto; padding-block: 22px 8px; }
+.foot-made { margin-top: 14px; }
+.footer__in { display: none; }
+@media (max-width: 800px) { .footer__top { flex-direction: column; } .footer__nav { justify-content: flex-start; } }
