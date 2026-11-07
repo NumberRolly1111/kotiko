@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://numberrolly1111.github.io/hadiya/sitemap.xml

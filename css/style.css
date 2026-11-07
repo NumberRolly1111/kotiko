@@ -198,7 +198,7 @@ svg { display: block; }
 /* ticker strip across the hero edge */
 .ticker { position: relative; z-index: 5; margin: -44px -4vw -26px; padding: 14px 0; background: var(--ink); color: var(--butter); transform: rotate(-1.6deg); overflow: hidden; border-block: var(--bw) solid var(--ink); }
 .ticker__track { display: flex; width: max-content; animation: marquee 34s linear infinite; }
-.ticker:hover .ticker__track { animation-play-state: paused; }
+.ticker:hover .ticker__track, .ticker.is-paused .ticker__track { animation-play-state: paused; }
 .ticker__group { display: flex; align-items: center; gap: 28px; padding-right: 28px; font: 600 clamp(17px, 2vw, 22px)/1 var(--display); white-space: nowrap; }
 .ticker__group svg { width: 26px; height: 26px; fill: var(--tang); flex: none; }
 
@@ -418,3 +418,20 @@ main > .section:first-child { min-height: 70vh; }
 .cat__ava .a-ear { transform-box: fill-box; transform-origin: 50% 100%; }
 .meet__item:hover .a-ear--l { animation: ear-l .5s var(--spring); }
 .meet__item:hover .a-ear--r { animation: ear-r .5s var(--spring) .06s; }
+
+/* map, voices, 404 */
+.mapbox { margin-top: 36px; padding: 10px; overflow: hidden; }
+.mapbox iframe { display: block; width: 100%; height: clamp(300px, 44vw, 460px); border: 0; border-radius: 18px; background: #eee; }
+.map__links { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 16px; }
+.voices { margin-top: 44px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 36px; }
+.voice { padding: 30px 28px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.voice__big { font: 700 clamp(56px, 8vw, 88px)/1 var(--display); letter-spacing: -.04em; color: var(--tang); }
+.voice__q { font: 600 clamp(20px, 2.2vw, 26px)/1.3 var(--display); letter-spacing: -.01em; }
+.voice__by { color: var(--muted); font-size: 15px; }
+.voice .link { margin-top: auto; }
+.nf { min-height: 72vh; display: grid; align-items: center; }
+.nf__in { display: grid; gap: 20px; justify-items: start; }
+.nf__code { font: 700 clamp(96px, 20vw, 220px)/.9 var(--display); letter-spacing: -.05em; color: var(--ink); }
+.nf__h { font-size: clamp(30px, 5vw, 56px); }
+@media (max-width: 800px) { .voices { grid-template-columns: 1fr; } }
+.ticker { cursor: pointer; }

@@ -346,6 +346,14 @@
     }, { passive: true });
   }
 
+  // лента: пауза при наведении и по касанию
+  var tk = document.querySelector(".ticker");
+  if (tk) {
+    tk.addEventListener("pointerenter", function () { tk.classList.add("is-paused"); });
+    tk.addEventListener("pointerleave", function () { tk.classList.remove("is-paused"); });
+    tk.addEventListener("click", function () { tk.classList.toggle("is-paused"); });
+  }
+
   // старт
 
   var yr = document.getElementById("year");

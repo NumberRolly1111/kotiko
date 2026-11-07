@@ -8,6 +8,10 @@
 
 `index.html` (цены и калькулятор), `cats.html`, `classes.html`, `help.html`, `contacts.html`. Ссылки и адрес в браузере без `.html` (GitHub Pages это понимает; в локальном `http.server` откроются только с `.html`). Шапка и подвал повторяются в каждом файле, при правке меню менять нужно все пять.
 
+## SEO
+
+`sitemap.xml`, `robots.txt`, превью `og.png` (1200×630) и `404.html` (работает на GitHub Pages, использует `<base href="/hadiya/">`; при смене адреса или домена поправьте base, canonical и sitemap).
+
 ## Запуск
 
 Откройте `index.html` в браузере или поднимите статический сервер:
