@@ -1,6 +1,11 @@
 (function () {
   "use strict";
 
+  // красивый адрес без .html (GitHub Pages открывает страницы и без расширения)
+  if (/\.html$/.test(location.pathname) && /^https?:$/.test(location.protocol) && !/^(localhost|127\.)/.test(location.hostname)) {
+    history.replaceState(null, "", location.pathname.replace(/(^|\/)index\.html$/, "$1").replace(/\.html$/, "") + location.search + location.hash);
+  }
+
   var cfg = window.KOTIKO;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduce) document.documentElement.classList.add("js-motion");
