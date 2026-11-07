@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kotiko — котокафе в Астане</title>
   <meta name="description" content="Kotiko — котокафе в Астане со спасёнными котиками. Оплата поминутно от 45 ₸, без записи, с детьми от 4 лет. Мастер-классы. Улица Розы Баглановой, 3/1.">
-  <meta name="theme-color" content="#172033">
+  <meta name="theme-color" content="#ffd15c">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Kotiko — котокафе в Астане">
   <meta property="og:description" content="Спасённые котики, оплата за минуты, без записи. Мастер-классы и помощь котикам.">
@@ -13,7 +13,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Onest:wght@400;500;600&family=Unbounded:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
   {
@@ -38,10 +38,25 @@
 </head>
 <body>
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="paw" viewBox="0 0 64 64">
+    <ellipse cx="32" cy="43" rx="15" ry="12"/>
+    <ellipse cx="13" cy="27" rx="6" ry="8" transform="rotate(-22 13 27)"/>
+    <ellipse cx="25" cy="14" rx="6" ry="8.500" transform="rotate(-7 25 14)"/>
+    <ellipse cx="39" cy="14" rx="6" ry="8.500" transform="rotate(7 39 14)"/>
+    <ellipse cx="51" cy="27" rx="6" ry="8" transform="rotate(22 51 27)"/>
+  </symbol>
+</svg>
+
 <header class="topbar" id="top">
   <div class="wrap topbar__in">
     <a class="logo" href="#top" aria-label="Kotiko">
-      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 34V8l9 8h10l9-8v26c0 3-2 5-5 5H11c-3 0-5-2-5-5z" fill="currentColor"/></svg>
+      <svg class="logo__mark" viewBox="0 0 44 40" aria-hidden="true">
+        <path d="M5 14 8 2l11 7zM39 14 36 2 25 9z" fill="#ff7a1a" stroke="#1c1530" stroke-width="3" stroke-linejoin="round"/>
+        <ellipse cx="22" cy="24" rx="18" ry="13.500" fill="#ff7a1a" stroke="#1c1530" stroke-width="3"/>
+        <circle cx="15.500" cy="22" r="2.400" fill="#1c1530"/><circle cx="28.500" cy="22" r="2.400" fill="#1c1530"/>
+        <path d="M20 27h4l-2 2.600z" fill="#ff9fb2" stroke="#1c1530" stroke-width="1.600" stroke-linejoin="round"/>
+      </svg>
       <span>Kotiko</span>
     </a>
     <nav class="nav" aria-label="Основная навигация">
@@ -51,75 +66,145 @@
       <a href="#help">Помощь</a>
       <a href="#contacts">Контакты</a>
     </nav>
-    <a class="btn btn--ginger btn--sm" href="#" data-wa="hello">WhatsApp</a>
+    <a class="btn btn--tang btn--sm" href="#" data-wa="hello">WhatsApp</a>
   </div>
 </header>
 
 <main>
 
 <section class="hero" id="price">
+  <div class="paws" aria-hidden="true">
+    <svg class="paw p1"><use href="#paw"/></svg>
+    <svg class="paw p2"><use href="#paw"/></svg>
+    <svg class="paw p3"><use href="#paw"/></svg>
+    <svg class="paw p4"><use href="#paw"/></svg>
+    <svg class="paw p5"><use href="#paw"/></svg>
+  </div>
+
   <div class="wrap hero__in">
     <div class="hero__text">
       <p class="status" id="status" aria-live="polite"><span class="status__dot"></span><span id="statusText"></span></p>
-      <h1>Котокафе, где платят за минуты</h1>
+      <h1 class="h1">
+        <span class="line"><span class="w" style="--i:0">Котокафе,</span></span>
+        <span class="line"><span class="w" style="--i:1">где платят</span></span>
+        <span class="line"><span class="w" style="--i:2">за минуты</span></span>
+      </h1>
       <p class="hero__lead">Приходите на 15 минут или на 2 часа. Запись не нужна, с детьми можно от 4 лет. Все котики у нас спасённые.</p>
       <ul class="hero__facts">
-        <li>Улица Розы Баглановой, 3/1</li>
-        <li>Будни 12:00–22:00, выходные 11:00–22:00</li>
+        <li>
+          <svg viewBox="0 0 18 18" width="18" height="18" aria-hidden="true"><path d="M9 1.500A5.500 5.500 0 0 0 3.500 7c0 4 5.500 9.500 5.500 9.500S14.500 11 14.500 7A5.500 5.500 0 0 0 9 1.500z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="2" fill="currentColor"/></svg>
+          Улица Розы Баглановой, 3/1
+        </li>
+        <li>
+          <svg viewBox="0 0 18 18" width="18" height="18" aria-hidden="true"><circle cx="9" cy="9" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 5v4.500l3 1.800" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Будни 12–22, выходные 11–22
+        </li>
       </ul>
       <div class="hero__actions">
-        <a class="btn btn--ginger" href="#contacts">Как добраться</a>
-        <a class="btn btn--line" href="#cats">Познакомиться с котиками</a>
+        <a class="btn btn--ink" href="#contacts">Как добраться</a>
+        <a class="btn btn--white" href="#cats">Познакомиться с котиками</a>
       </div>
     </div>
 
-    <div class="calc" role="group" aria-labelledby="calcTitle">
-      <h2 id="calcTitle" class="calc__title">Сколько стоит визит</h2>
-
-      <div class="seg" role="group" aria-label="День посещения">
-        <button type="button" data-mode="weekday" aria-pressed="true">Будни</button>
-        <button type="button" data-mode="weekend" aria-pressed="false">Выходные и праздники</button>
+    <div class="receipt" role="group" aria-labelledby="calcTitle">
+      <div class="peek" aria-hidden="true">
+        <svg class="peek__head" viewBox="0 0 260 150">
+          <g class="ear ear--l"><polygon points="44,74 50,8 112,48" fill="#ff7a1a" stroke="#1c1530" stroke-width="5" stroke-linejoin="round"/><polygon points="58,56 61,28 88,46" fill="#ff9fb2"/></g>
+          <g class="ear ear--r"><polygon points="216,74 210,8 148,48" fill="#ff7a1a" stroke="#1c1530" stroke-width="5" stroke-linejoin="round"/><polygon points="202,56 199,28 172,46" fill="#ff9fb2"/></g>
+          <ellipse cx="130" cy="100" rx="98" ry="64" fill="#ff7a1a" stroke="#1c1530" stroke-width="5"/>
+          <path d="M122 42v16M130 38v18M138 42v16" stroke="#1c1530" stroke-width="5" stroke-linecap="round" fill="none"/>
+          <g class="eye" transform="translate(94 92)"><g class="blink"><circle class="sclera" r="21" fill="#fff" stroke="#1c1530" stroke-width="4.500"/><g class="pupil"><circle r="10.500" fill="#1c1530"/><circle cx="-3.500" cy="-4" r="3.500" fill="#fff"/></g></g></g>
+          <g class="eye" transform="translate(166 92)"><g class="blink"><circle class="sclera" r="21" fill="#fff" stroke="#1c1530" stroke-width="4.500"/><g class="pupil"><circle r="10.500" fill="#1c1530"/><circle cx="-3.500" cy="-4" r="3.500" fill="#fff"/></g></g></g>
+          <path d="M121 113h18l-9 10z" fill="#ff9fb2" stroke="#1c1530" stroke-width="3.500" stroke-linejoin="round"/>
+          <path d="M130 123q0 9-10 9M130 123q0 9 10 9" fill="none" stroke="#1c1530" stroke-width="3.500" stroke-linecap="round"/>
+          <path d="M66 112 34 104M66 122 34 126M194 112l32-8M194 122l32 4" stroke="#1c1530" stroke-width="3.500" stroke-linecap="round"/>
+        </svg>
+        <svg class="peek__paws" viewBox="0 0 260 150">
+          <g fill="#ff7a1a" stroke="#1c1530" stroke-width="5"><ellipse cx="82" cy="146" rx="27" ry="15"/><ellipse cx="178" cy="146" rx="27" ry="15"/></g>
+          <path d="M73 140v12M91 140v12M169 140v12M187 140v12" stroke="#1c1530" stroke-width="4" stroke-linecap="round"/>
+        </svg>
       </div>
 
-      <p class="calc__total" id="calcTotal" aria-live="polite">2 700 ₸</p>
-      <p class="calc__detail" id="calcDetail">45 ₸ × 60 мин × 1 чел.</p>
-
-      <label class="calc__label" for="minutes">Время: <strong id="minutesText">1 ч</strong></label>
-      <input class="range" id="minutes" type="range" min="15" max="240" step="5" value="60">
-      <div class="chips" role="group" aria-label="Быстрый выбор времени">
-        <button type="button" data-min="15">15 мин</button>
-        <button type="button" data-min="30">30 мин</button>
-        <button type="button" data-min="60">1 час</button>
-        <button type="button" data-min="120">2 часа</button>
-      </div>
-
-      <div class="people">
-        <span id="peopleLabel">Гостей</span>
-        <div class="stepper" role="group" aria-labelledby="peopleLabel">
-          <button type="button" id="peopleMinus" aria-label="Меньше гостей">−</button>
-          <output id="peopleOut">1</output>
-          <button type="button" id="peoplePlus" aria-label="Больше гостей">+</button>
+      <div class="ticket">
+        <div class="ticket__head">
+          <h2 id="calcTitle">Ваш чек</h2>
+          <span id="ticketDate">Kotiko</span>
         </div>
-      </div>
 
-      <p class="calc__note">Цена за одного человека, оплата по времени. Итог считается по факту визита.</p>
+        <div class="seg" id="seg" data-active="weekday" role="group" aria-label="День посещения">
+          <button type="button" data-mode="weekday" aria-pressed="true">Будни</button>
+          <button type="button" data-mode="weekend" aria-pressed="false">Выходные и праздники</button>
+        </div>
+
+        <label class="ticket__label" for="minutes"><span>Время</span><strong id="minutesText">1 ч</strong></label>
+        <input class="range" id="minutes" type="range" min="15" max="240" step="5" value="60">
+        <div class="chips" role="group" aria-label="Быстрый выбор времени">
+          <button type="button" data-min="15">15 мин</button>
+          <button type="button" data-min="30">30 мин</button>
+          <button type="button" data-min="60">1 час</button>
+          <button type="button" data-min="120">2 часа</button>
+        </div>
+
+        <div class="people">
+          <span id="peopleLabel">Гостей</span>
+          <div class="stepper" role="group" aria-labelledby="peopleLabel">
+            <button type="button" id="peopleMinus" aria-label="Меньше гостей">−</button>
+            <output id="peopleOut">1</output>
+            <button type="button" id="peoplePlus" aria-label="Больше гостей">+</button>
+          </div>
+        </div>
+
+        <div class="total">
+          <span>Итого</span>
+          <p class="total__num" id="calcTotal" aria-live="polite">2 700 ₸</p>
+        </div>
+        <p class="ticket__detail" id="calcDetail">45 ₸ × 60 мин × 1 чел.</p>
+        <p class="ticket__note">Цена за одного человека, оплата по времени. Итог считается по факту визита.</p>
+        <div class="barcode" aria-hidden="true"></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section" id="how">
-  <div class="wrap how">
-    <h2>Как это работает</h2>
-    <ul class="how__list">
-      <li>
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <div class="ticker__group">
+      <span>Без записи</span><svg><use href="#paw"/></svg>
+      <span>Минута от 45 ₸</span><svg><use href="#paw"/></svg>
+      <span>Дети от 4 лет</span><svg><use href="#paw"/></svg>
+      <span>Спасённые котики</span><svg><use href="#paw"/></svg>
+      <span>Мастер-классы</span><svg><use href="#paw"/></svg>
+    </div>
+    <div class="ticker__group">
+      <span>Без записи</span><svg><use href="#paw"/></svg>
+      <span>Минута от 45 ₸</span><svg><use href="#paw"/></svg>
+      <span>Дети от 4 лет</span><svg><use href="#paw"/></svg>
+      <span>Спасённые котики</span><svg><use href="#paw"/></svg>
+      <span>Мастер-классы</span><svg><use href="#paw"/></svg>
+    </div>
+  </div>
+</div>
+
+<section class="section section--sky" id="how">
+  <div class="wrap">
+    <h2 data-reveal="rise">Как это работает</h2>
+    <ul class="how">
+      <li class="sticker" style="--r:-1.6deg" data-reveal="pop">
+        <span class="how__icon">
+          <svg viewBox="0 0 32 32" width="34" height="34" aria-hidden="true"><rect x="7" y="4" width="18" height="24" rx="3" fill="#fff" stroke="#1c1530" stroke-width="2.500"/><circle cx="21" cy="16" r="1.900" fill="#1c1530"/></svg>
+        </span>
         <h3>Приходите без записи</h3>
         <p>Бронировать время не нужно: заходите, когда удобно, в часы работы.</p>
       </li>
-      <li>
+      <li class="sticker" style="--r:1.2deg" data-reveal="pop">
+        <span class="how__icon how__icon--butter">
+          <svg viewBox="0 0 32 32" width="34" height="34" aria-hidden="true"><circle cx="16" cy="16" r="11.500" fill="#fff" stroke="#1c1530" stroke-width="2.500"/><path d="M16 9v7.500l5 3" fill="none" stroke="#1c1530" stroke-width="2.500" stroke-linecap="round"/></svg>
+        </span>
         <h3>Платите за время</h3>
         <p>Минута стоит 45 ₸ в будни и 50 ₸ в выходные и праздники. Можно задержаться на 15 минут, а можно на 2 часа.</p>
       </li>
-      <li>
+      <li class="sticker" style="--r:-0.8deg" data-reveal="pop">
+        <span class="how__icon how__icon--pink"><b>4+</b></span>
         <h3>С детьми от 4 лет</h3>
         <p>Посещение возможно с детьми старше 4 лет. Взрослым, конечно, тоже можно.</p>
       </li>
@@ -127,55 +212,62 @@
   </div>
 </section>
 
-<section class="section section--sky" id="cats">
+<section class="section section--paper" id="cats">
   <div class="wrap">
-    <h2>Знакомьтесь с котиками</h2>
-    <p class="lead">Здесь живут спасённые котики: кого-то нашли на улице, кого-то привезли из приюта или из семьи. О пристройстве и о тех, кто ищет дом, мы рассказываем <a class="link" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">в инстаграме</a>.</p>
+    <h2 data-reveal="rise">Знакомьтесь с котиками</h2>
+    <p class="lead" data-reveal="rise">Здесь живут спасённые котики: кого-то нашли на улице, кого-то привезли из приюта или из семьи. О пристройстве и о тех, кто ищет дом, мы рассказываем <a class="link" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">в инстаграме</a>.</p>
     <ul class="cats" id="catList"></ul>
   </div>
 </section>
 
-<section class="section" id="classes">
+<section class="section section--tang" id="classes">
   <div class="wrap">
-    <h2>Мастер-классы</h2>
-    <p class="lead">Цена указана за одного человека. Всё, что сделаете, заберёте с собой.</p>
+    <h2 data-reveal="rise">Мастер-классы</h2>
+    <p class="lead lead--ink" data-reveal="rise">Цена указана за одного человека. Всё, что сделаете, заберёте с собой.</p>
     <ul class="classes" id="classList"></ul>
   </div>
 </section>
 
-<section class="band" id="help">
-  <div class="wrap band__in">
-    <div>
-      <h2>Помогите котикам</h2>
-      <p>Котики у нас спасённые, и вы можете помочь им заботиться о них. Кроме донатов, можно принести то, что нужно в кафе каждый день.</p>
-      <ul class="band__list">
-        <li>Сухой корм Fitmin с олениной</li>
-        <li>Бентонитовый наполнитель</li>
-        <li>Хозяйственные товары</li>
+<section class="section section--pink" id="help">
+  <div class="wrap help">
+    <div class="help__text">
+      <h2 data-reveal="rise">Помогите котикам</h2>
+      <p data-reveal="rise">Котики у нас спасённые, и вы можете помочь им заботиться о них. Кроме донатов, можно принести то, что нужно в кафе каждый день.</p>
+      <ul class="chip-list">
+        <li class="sticker sticker--sm" style="--r:-2deg" data-reveal="pop">Сухой корм Fitmin с олениной</li>
+        <li class="sticker sticker--sm" style="--r:1.5deg" data-reveal="pop">Бентонитовый наполнитель</li>
+        <li class="sticker sticker--sm" style="--r:-1deg" data-reveal="pop">Хозяйственные товары</li>
       </ul>
+      <a class="btn btn--ink" href="#" data-wa="help">Узнать, как помочь</a>
     </div>
-    <a class="btn btn--ink" href="#" data-wa="help">Узнать, как помочь</a>
+    <svg class="yarn" id="yarn" viewBox="0 0 260 220" aria-hidden="true">
+      <path d="M52 188c-30 8-40 26-10 28s60-12 86-24" fill="none" stroke="#1c1530" stroke-width="5" stroke-linecap="round"/>
+      <g class="yarn__ball">
+        <circle cx="140" cy="110" r="82" fill="#ff7a1a" stroke="#1c1530" stroke-width="5"/>
+        <path d="M70 80c36 14 84 12 140-8M62 118c40 18 96 16 154-10M80 156c34 8 76 4 112-16M110 36c-14 40-12 90 8 142M158 30c14 40 16 92-6 148" fill="none" stroke="#1c1530" stroke-width="4" stroke-linecap="round"/>
+      </g>
+    </svg>
   </div>
 </section>
 
 <section class="section section--ink" id="contacts">
   <div class="wrap contacts">
-    <h2>Как нас найти</h2>
+    <h2 data-reveal="rise">Как нас найти</h2>
     <dl class="contacts__list">
-      <div><dt>Адрес</dt><dd>улица Розы Баглановой, 3/1, Нура район, Астана</dd></div>
-      <div>
+      <div data-reveal="rise"><dt>Адрес</dt><dd>улица Розы Баглановой, 3/1, Нура район, Астана</dd></div>
+      <div data-reveal="rise" style="--d:.06s">
         <dt>Часы работы</dt>
         <dd>Будни с 12:00 до 22:00<br>Выходные и праздники с 11:00 до 22:00</dd>
       </div>
-      <div><dt>Телефон и WhatsApp</dt><dd><a href="tel:+77074101312">+7 707 410 13 12</a></dd></div>
-      <div><dt>Рейтинг в 2ГИС</dt><dd>4,9 · 832 оценки · <a class="link link--light" href="https://2gis.kz/astana/firm/70000001091591591/tab/reviews" target="_blank" rel="noopener">отзывы</a></dd></div>
+      <div data-reveal="rise" style="--d:.12s"><dt>Телефон и WhatsApp</dt><dd><a href="tel:+77074101312">+7 707 410 13 12</a></dd></div>
+      <div data-reveal="rise" style="--d:.18s"><dt>Рейтинг в 2ГИС</dt><dd>4,9 · 832 оценки · <a class="link link--light" href="https://2gis.kz/astana/firm/70000001091591591/tab/reviews" target="_blank" rel="noopener">отзывы</a></dd></div>
     </dl>
     <div class="contacts__links">
-      <a class="btn btn--ginger" href="https://2gis.kz/astana/firm/70000001091591591" target="_blank" rel="noopener">Открыть в 2ГИС</a>
-      <a class="btn btn--line" href="#" data-wa="hello">WhatsApp</a>
-      <a class="btn btn--line" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn btn--line" href="https://www.tiktok.com/@kotiko_cafe" target="_blank" rel="noopener">TikTok</a>
-      <a class="btn btn--line" href="https://www.threads.com/@kotiko_cafe" target="_blank" rel="noopener">Threads</a>
+      <a class="btn btn--butter" href="https://2gis.kz/astana/firm/70000001091591591" target="_blank" rel="noopener">Открыть в 2ГИС</a>
+      <a class="btn btn--tang" href="#" data-wa="hello">WhatsApp</a>
+      <a class="btn btn--white" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn--white" href="https://www.tiktok.com/@kotiko_cafe" target="_blank" rel="noopener">TikTok</a>
+      <a class="btn btn--white" href="https://www.threads.com/@kotiko_cafe" target="_blank" rel="noopener">Threads</a>
     </div>
     <p class="contacts__note">Правила посещения собраны в актуальных историях инстаграма <a class="link link--light" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">@kotiko_cafe</a>.</p>
   </div>
