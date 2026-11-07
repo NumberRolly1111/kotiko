@@ -155,12 +155,12 @@
   // котики
 
   var COATS = [
-    { fill: "#ff8a2b", stripes: true },
+    { fill: "#25252d", tux: true, dark: true },
     { fill: "#a3abbd", stripes: true },
-    { fill: "#2e2a3f", dark: true },
-    { fill: "#f4e1bd" },
+    { fill: "#25252d", tux: true, dark: true },
+    { fill: "#ffffff" },
     { fill: "#b98355", stripes: true },
-    { fill: "#ffffff" }
+    { fill: "#f4e1bd" }
   ];
   var CARD_COLORS = ["#ffd15c", "#a9ddf2", "#ffb8c6", "#bdebc8", "#ffc48a"];
   var INK = "#1c1530";
@@ -174,11 +174,12 @@
       '<g class="a-ear a-ear--l"><polygon points="13,42 17,6 47,24" fill="' + coat.fill + '" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><polygon points="21,33 22,17 36,26" fill="#ff9fb2"/></g>' +
       '<g class="a-ear a-ear--r"><polygon points="87,42 83,6 53,24" fill="' + coat.fill + '" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><polygon points="79,33 78,17 64,26" fill="#ff9fb2"/></g>' +
       '<ellipse cx="50" cy="58" rx="40" ry="35" fill="' + coat.fill + '" stroke="' + INK + '" stroke-width="4"/>' +
+      (coat.tux ? '<path d="M50 24c-9 14-10 24-7 32h14c3-8 2-18-7-32z" fill="#fff"/><ellipse cx="50" cy="72" rx="20" ry="14" fill="#fff"/>' : "") +
       stripes +
       '<g class="a-eye" style="--bd:' + delay + 's"><ellipse cx="34" cy="56" rx="5.500" ry="7" fill="' + eye + '"/><ellipse cx="66" cy="56" rx="5.500" ry="7" fill="' + eye + '"/>' +
       '<circle cx="32.300" cy="53.500" r="1.800" fill="#fff"/><circle cx="64.300" cy="53.500" r="1.800" fill="#fff"/></g>' +
       '<path d="M45 66h10l-5 6z" fill="#ff9fb2" stroke="' + INK + '" stroke-width="2.500" stroke-linejoin="round"/>' +
-      '<path d="M50 72q0 7-7 7M50 72q0 7 7 7" fill="none" stroke="' + (coat.dark ? "#fff" : INK) + '" stroke-width="2.500" stroke-linecap="round"/>' +
+      '<path d="M50 72q0 7-7 7M50 72q0 7 7 7" fill="none" stroke="' + INK + '" stroke-width="2.500" stroke-linecap="round"/>' +
       '<path d="M26 68 8 64M26 74 8 78M74 68l18-4M74 74l18 4" stroke="' + INK + '" stroke-width="2.500" stroke-linecap="round"/>' +
       "</svg>";
   }
@@ -186,7 +187,7 @@
   var rots = [-1.2, 0.9, -0.6, 1.3, -1, 0.7];
   var catList = document.getElementById("catList");
   cfg.cats.forEach(function (cat, i) {
-    var coat = cat.id === "kurama" ? COATS[0] : COATS[(i + 1) % COATS.length];
+    var coat = cat.id === "kurama" ? { fill: "#ff8a2b", stripes: true } : COATS[i % COATS.length];
     var li = document.createElement("li");
     li.className = "cat sticker";
     li.style.setProperty("--r", rots[i % rots.length] + "deg");

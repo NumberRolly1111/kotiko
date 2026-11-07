@@ -1,6 +1,7 @@
 :root {
   --ink: #1c1530;
-  --tang: #ff7a1a;
+  --tuxedo: #25252d;
+  --tang: #ff6a1f;
   --butter: #ffd15c;
   --sky: #a9ddf2;
   --pink: #ffb8c6;
@@ -75,7 +76,7 @@ svg { display: block; }
 .nav a:hover::after { transform: scaleX(1); }
 
 /* hero */
-.hero { position: relative; background: var(--butter); padding-block: clamp(48px, 6vw, 76px) clamp(100px, 11vw, 140px); overflow: hidden; }
+.hero { position: relative; background: var(--tang); padding-block: clamp(48px, 6vw, 76px) clamp(100px, 11vw, 140px); overflow: hidden; }
 .hero__in { position: relative; display: grid; grid-template-columns: 1.08fr .92fr; gap: clamp(36px, 5vw, 72px); align-items: center; }
 .hero__text { min-width: 0; }
 
@@ -203,10 +204,11 @@ svg { display: block; }
 
 /* sections */
 .section { position: relative; padding-block: clamp(72px, 9vw, 120px); }
-.section--sky { background: var(--sky); padding-top: clamp(96px, 11vw, 150px); }
+.section--white { background: #fff; padding-top: clamp(96px, 11vw, 150px); }
 .section--paper { background: var(--paper); }
 .section--tang { background: var(--tang); }
-.section--pink { background: var(--pink); overflow: hidden; }
+.section--orange { background: var(--tang); overflow: hidden; }
+.section--ink .lead { color: #c9c3dc; }
 .section--ink { background: var(--ink); color: var(--paper); }
 
 .sticker {
@@ -347,3 +349,17 @@ svg { display: block; }
   .class__price { right: -6px; width: 92px; height: 92px; font-size: 15px; }
   .ticker { margin-top: -32px; }
 }
+
+/* instagram-highlights look: orange badge circles, tuxedo cat */
+.hero .btn--ink { --shc: #fff; }
+.hero .status { box-shadow: 3px 3px 0 var(--ink); }
+.how__icon { background: var(--tang); }
+.how__icon--butter, .how__icon--pink { background: var(--tang); }
+.how__icon svg { stroke: var(--ink); }
+.cat__ava { background: var(--tang); border: var(--bw) solid var(--ink); border-radius: 50%; box-shadow: 4px 4px 0 var(--ink); overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
+.cat__ava svg { width: 88%; height: 88%; filter: none; overflow: hidden; margin-bottom: -4%; }
+.cat__ava img { border: 0; }
+.class .btn { border-color: var(--ink); --shc: var(--tang); }
+.class h3, .class p, .class__time { color: var(--ink); }
+.class p { color: var(--muted); }
+.section--ink .class { color: var(--ink); }
