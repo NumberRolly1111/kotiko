@@ -161,41 +161,12 @@
 
   // котики
 
-  var COATS = [
-    { fill: "#25252d", tux: true, dark: true },
-    { fill: "#a3abbd", stripes: true },
-    { fill: "#25252d", tux: true, dark: true },
-    { fill: "#ffffff" },
-    { fill: "#b98355", stripes: true },
-    { fill: "#f4e1bd" }
-  ];
   var CARD_COLORS = ["#ffd15c", "#a9ddf2", "#ffb8c6", "#bdebc8", "#ffc48a"];
-  var INK = "#1c1530";
-
-  function catFace(coat, delay) {
-    var dur = (4.5 + (parseFloat(delay) * 0.37)).toFixed(1);
-    var eye = coat.dark ? "#ffd15c" : INK;
-    var stripes = coat.stripes
-      ? '<path d="M44 28v9M50 26v10M56 28v9" stroke="' + INK + '" stroke-width="3" stroke-linecap="round" fill="none"/>'
-      : "";
-    return '<svg viewBox="0 0 100 100" aria-hidden="true">' +
-      '<g class="a-ear a-ear--l"><polygon points="13,42 17,6 47,24" fill="' + coat.fill + '" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><polygon points="21,33 22,17 36,26" fill="#ff9fb2"/></g>' +
-      '<g class="a-ear a-ear--r"><polygon points="87,42 83,6 53,24" fill="' + coat.fill + '" stroke="' + INK + '" stroke-width="4" stroke-linejoin="round"/><polygon points="79,33 78,17 64,26" fill="#ff9fb2"/></g>' +
-      '<ellipse cx="50" cy="58" rx="40" ry="35" fill="' + coat.fill + '" stroke="' + INK + '" stroke-width="4"/>' +
-      (coat.tux ? '<path d="M50 24c-9 14-10 24-7 32h14c3-8 2-18-7-32z" fill="#fff"/><ellipse cx="50" cy="72" rx="20" ry="14" fill="#fff"/>' : "") +
-      stripes +
-      '<g class="a-eye" style="--bd:' + delay + 's;--bt:' + dur + 's"><ellipse cx="34" cy="56" rx="5.500" ry="7" fill="' + eye + '"/><circle cx="32.300" cy="53.500" r="1.800" fill="#fff"/></g>' +
-      '<g class="a-eye" style="--bd:' + delay + 's;--bt:' + dur + 's"><ellipse cx="66" cy="56" rx="5.500" ry="7" fill="' + eye + '"/><circle cx="64.300" cy="53.500" r="1.800" fill="#fff"/></g>' +
-      '<path d="M45 66h10l-5 6z" fill="#ff9fb2" stroke="' + INK + '" stroke-width="2.500" stroke-linejoin="round"/>' +
-      '<path d="M50 72q0 7-7 7M50 72q0 7 7 7" fill="none" stroke="' + INK + '" stroke-width="2.500" stroke-linecap="round"/>' +
-      '<path d="M26 68 8 64M26 74 8 78M74 68l18-4M74 74l18 4" stroke="' + INK + '" stroke-width="2.500" stroke-linecap="round"/>' +
-      "</svg>";
-  }
+  var PAW_AVA = '<svg class="ava-paw" viewBox="0 0 64 64" aria-hidden="true"><use href="#paw"/></svg>';
 
   var rots = [-1.2, 0.9, -0.6, 1.3, -1, 0.7];
   var catList = document.getElementById("catList");
   if (catList) cfg.cats.forEach(function (cat, i) {
-    var coat = cat.id === "kurama" ? { fill: "#ff8a2b", stripes: true } : COATS[i % COATS.length];
     var li = document.createElement("li");
     li.className = "cat sticker";
     li.style.setProperty("--r", rots[i % rots.length] + "deg");
@@ -205,7 +176,7 @@
 
     var ava = document.createElement("div");
     ava.className = "cat__ava";
-    ava.innerHTML = catFace(coat, ((i * 1.7) % 5).toFixed(1));
+    ava.innerHTML = PAW_AVA;
     var img = document.createElement("img");
     img.src = "img/cats/" + cat.id + ".jpg";
     img.alt = cat.name;
@@ -250,7 +221,6 @@
   // котики на главной (первые шесть)
   var teaser = document.getElementById("catTeaser");
   if (teaser) cfg.cats.slice(0, 6).forEach(function (cat, i) {
-    var coat = cat.id === "kurama" ? { fill: "#ff8a2b", stripes: true } : COATS[i % COATS.length];
     var li = document.createElement("li");
     li.setAttribute("data-reveal", "pop");
     li.style.setProperty("--d", (i * 0.06) + "s");
@@ -259,7 +229,7 @@
     a.href = "cats";
     var ava = document.createElement("div");
     ava.className = "cat__ava";
-    ava.innerHTML = catFace(coat, ((i * 1.7) % 5).toFixed(1));
+    ava.innerHTML = PAW_AVA;
     var img = document.createElement("img");
     img.src = "img/cats/" + cat.id + ".jpg";
     img.alt = cat.name;
@@ -314,6 +284,12 @@
     li.style.setProperty("--d", ((i % 2) * 0.1) + "s");
     li.setAttribute("data-reveal", "pop");
 
+    var photo = document.createElement("img");
+    photo.className = "class__photo";
+    photo.src = "img/classes/" + (i + 1) + ".jpg";
+    photo.alt = c.title + ": пример работы";
+    photo.loading = "lazy";
+    photo.addEventListener("error", function () { photo.remove(); li.classList.add("no-photo"); });
     var ico = document.createElement("div");
     ico.className = "class__icon";
     ico.innerHTML = CLASS_ICONS[i % CLASS_ICONS.length];
@@ -341,6 +317,7 @@
     foot.appendChild(time);
     foot.appendChild(a);
 
+    li.appendChild(photo);
     li.appendChild(price);
     li.appendChild(ico);
     li.appendChild(h);
@@ -398,6 +375,10 @@
   applyTheme(document.documentElement.getAttribute("data-theme"));
   if (themeBtn) themeBtn.addEventListener("click", function () {
     var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    var root = document.documentElement;
+    root.classList.add("theme-anim");
+    clearTimeout(window.__themeT);
+    window.__themeT = setTimeout(function () { root.classList.remove("theme-anim"); }, 600);
     applyTheme(next);
     try { localStorage.setItem("kotiko-theme", next); } catch (e) {}
   });

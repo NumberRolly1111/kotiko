@@ -506,3 +506,19 @@ main > .section:first-child { min-height: 70vh; }
 .help__btns { display: flex; flex-wrap: wrap; gap: 16px; }
 .help__note { font-size: 15px !important; max-width: 30em; }
 @media (max-width: 620px) { .help__btns .btn { width: 100%; } }
+
+/* class photos */
+.class { padding: 0 0 26px; gap: 14px; overflow: visible; }
+.class > :not(.class__photo):not(.class__price) { margin-inline: 28px; }
+.class__photo { display: block; width: 100%; aspect-ratio: 5 / 4; object-fit: cover; border-radius: 23px 23px 0 0; border-bottom: var(--bw) solid var(--ink); }
+.class__icon { position: relative; z-index: 1; margin-top: -48px; margin-bottom: -2px; box-shadow: 3px 3px 0 var(--ink); }
+.class p, .class h3 { padding-right: 0; }
+.class.no-photo { padding-top: 30px; }
+.class.no-photo .class__icon { margin-top: 0; }
+.class__foot { margin-inline: 28px; }
+
+/* smooth theme switch */
+.theme-anim, .theme-anim *, .theme-anim *::before, .theme-anim *::after { transition: background-color .45s ease, color .45s ease, border-color .45s ease, fill .45s ease, stroke .45s ease, box-shadow .45s ease !important; }
+
+/* photo placeholder: paw instead of a drawn cat */
+.cat__ava svg.ava-paw { width: 52%; height: 52%; margin: auto; fill: var(--ink); opacity: .85; filter: none; overflow: visible; }
