@@ -502,3 +502,7 @@ main > .section:first-child { min-height: 70vh; }
 [data-theme="dark"] .logo__mark path, [data-theme="dark"] .logo__mark ellipse:first-of-type { stroke: #f6f0e4; }
 [data-theme="dark"] .hero, [data-theme="dark"] .section--orange, [data-theme="dark"] .nf { color: var(--ink); }
 @media (max-width: 620px) { .class p { padding-right: 0; } .class h3 { padding-right: 70px; } }
+
+.help__btns { display: flex; flex-wrap: wrap; gap: 16px; }
+.help__note { font-size: 15px !important; max-width: 30em; }
+@media (max-width: 620px) { .help__btns .btn { width: 100%; } }
