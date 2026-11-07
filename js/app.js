@@ -146,7 +146,7 @@
       var r = p.parentNode.querySelector(".sclera").getBoundingClientRect();
       var dx = lastX - (r.left + r.width / 2), dy = lastY - (r.top + r.height / 2);
       var d = Math.hypot(dx, dy) || 1;
-      var u = Math.min(8, d / scale / 14);
+      var u = Math.min(6, d / scale / 14);
       p.style.transform = "translate(" + (dx / d * u).toFixed(2) + "px," + (dy / d * u).toFixed(2) + "px)";
     });
   }
@@ -174,6 +174,7 @@
   var INK = "#1c1530";
 
   function catFace(coat, delay) {
+    var dur = (4.5 + (parseFloat(delay) * 0.37)).toFixed(1);
     var eye = coat.dark ? "#ffd15c" : INK;
     var stripes = coat.stripes
       ? '<path d="M44 28v9M50 26v10M56 28v9" stroke="' + INK + '" stroke-width="3" stroke-linecap="round" fill="none"/>'
@@ -184,8 +185,8 @@
       '<ellipse cx="50" cy="58" rx="40" ry="35" fill="' + coat.fill + '" stroke="' + INK + '" stroke-width="4"/>' +
       (coat.tux ? '<path d="M50 24c-9 14-10 24-7 32h14c3-8 2-18-7-32z" fill="#fff"/><ellipse cx="50" cy="72" rx="20" ry="14" fill="#fff"/>' : "") +
       stripes +
-      '<g class="a-eye" style="--bd:' + delay + 's"><ellipse cx="34" cy="56" rx="5.500" ry="7" fill="' + eye + '"/><ellipse cx="66" cy="56" rx="5.500" ry="7" fill="' + eye + '"/>' +
-      '<circle cx="32.300" cy="53.500" r="1.800" fill="#fff"/><circle cx="64.300" cy="53.500" r="1.800" fill="#fff"/></g>' +
+      '<g class="a-eye" style="--bd:' + delay + 's;--bt:' + dur + 's"><ellipse cx="34" cy="56" rx="5.500" ry="7" fill="' + eye + '"/><circle cx="32.300" cy="53.500" r="1.800" fill="#fff"/></g>' +
+      '<g class="a-eye" style="--bd:' + delay + 's;--bt:' + dur + 's"><ellipse cx="66" cy="56" rx="5.500" ry="7" fill="' + eye + '"/><circle cx="64.300" cy="53.500" r="1.800" fill="#fff"/></g>' +
       '<path d="M45 66h10l-5 6z" fill="#ff9fb2" stroke="' + INK + '" stroke-width="2.500" stroke-linejoin="round"/>' +
       '<path d="M50 72q0 7-7 7M50 72q0 7 7 7" fill="none" stroke="' + INK + '" stroke-width="2.500" stroke-linecap="round"/>' +
       '<path d="M26 68 8 64M26 74 8 78M74 68l18-4M74 74l18 4" stroke="' + INK + '" stroke-width="2.500" stroke-linecap="round"/>' +
