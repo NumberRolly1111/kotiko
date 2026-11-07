@@ -178,9 +178,11 @@
     ava.className = "cat__ava";
     ava.innerHTML = PAW_AVA;
     var img = document.createElement("img");
-    img.src = "img/cats/" + cat.id + ".jpg";
+    img.src = "img/cats/" + cat.id + ".webp";
     img.alt = cat.name;
     img.loading = "lazy";
+    img.decoding = "async";
+    img.width = 600; img.height = 600;
     img.addEventListener("load", function () { ava.classList.add("has-photo"); });
     img.addEventListener("error", function () { img.remove(); });
     ava.appendChild(img);
@@ -231,9 +233,11 @@
     ava.className = "cat__ava";
     ava.innerHTML = PAW_AVA;
     var img = document.createElement("img");
-    img.src = "img/cats/" + cat.id + ".jpg";
+    img.src = "img/cats/" + cat.id + ".webp";
     img.alt = cat.name;
     img.loading = "lazy";
+    img.decoding = "async";
+    img.width = 600; img.height = 600;
     img.addEventListener("load", function () { ava.classList.add("has-photo"); });
     img.addEventListener("error", function () { img.remove(); });
     ava.appendChild(img);
@@ -286,9 +290,11 @@
 
     var photo = document.createElement("img");
     photo.className = "class__photo";
-    photo.src = "img/classes/" + (i + 1) + ".jpg";
+    photo.src = "img/classes/" + (i + 1) + ".webp";
     photo.alt = c.title + ": пример работы";
     photo.loading = "lazy";
+    photo.decoding = "async";
+    photo.width = 800; photo.height = 640;
     photo.addEventListener("error", function () { photo.remove(); li.classList.add("no-photo"); });
     var ico = document.createElement("div");
     ico.className = "class__icon";
