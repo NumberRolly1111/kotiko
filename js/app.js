@@ -1,165 +1,185 @@
 (function () {
   "use strict";
 
-  var cfg = window.HADIYA;
-  var dict = window.I18N;
-  var menu = window.HADIYA_MENU || [];
-  var lang = "ru";
-  var activeTab = 0;
-
-  function t(key) {
-    return (dict[lang] && dict[lang][key]) || dict.ru[key] || key;
-  }
+  var cfg = window.KOTIKO;
 
   function waLink(text) {
     return "https://wa.me/" + cfg.whatsapp + "?text=" + encodeURIComponent(text);
   }
 
-  // язык
-
-  function applyLang(next) {
-    lang = dict[next] ? next : "ru";
-    try { localStorage.setItem("hadiya-lang", lang); } catch (e) {}
-    document.documentElement.lang = lang === "kk" ? "kk" : "ru";
-
-    document.querySelectorAll("[data-i18n]").forEach(function (el) {
-      el.textContent = t(el.getAttribute("data-i18n"));
-    });
-    document.querySelectorAll("[data-lang]").forEach(function (btn) {
-      btn.setAttribute("aria-pressed", String(btn.getAttribute("data-lang") === lang));
-    });
-    document.querySelectorAll("[data-wa]").forEach(function (a) {
-      a.href = waLink(t(a.getAttribute("data-wa") === "menu" ? "wa_menu" : "wa_hello"));
-      a.target = "_blank";
-      a.rel = "noopener";
-    });
-    renderMenu();
-    renderStatus();
+  function money(n) {
+    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " ₸";
   }
 
-  function detectLang() {
-    try {
-      var saved = localStorage.getItem("hadiya-lang");
-      if (saved && dict[saved]) return saved;
-    } catch (e) {}
-    return /^kk/i.test(navigator.language || "") ? "kk" : "ru";
+  // время и день недели в Астане (UTC+5)
+  var WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  function astanaNow() {
+    var parts = new Intl.DateTimeFormat("en-US", {
+      weekday: "short", hour: "numeric", minute: "numeric", hour12: false, timeZone: cfg.timezone
+    }).formatToParts(new Date());
+    var out = {};
+    parts.forEach(function (p) { out[p.type] = p.value; });
+    return {
+      day: WEEKDAYS.indexOf(out.weekday),
+      hour: Number(out.hour) % 24,
+      minute: Number(out.minute)
+    };
   }
 
-  // открыто или закрыто (Астана, UTC+5)
+  function isWeekendDay(d) { return d === 0 || d === 6; }
+  function hoursFor(d) { return isWeekendDay(d) ? cfg.hours.weekend : cfg.hours.weekday; }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+  // кнопки WhatsApp
+
+  document.querySelectorAll("[data-wa]").forEach(function (a) {
+    a.href = waLink(cfg.messages[a.getAttribute("data-wa")] || cfg.messages.hello);
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+
+  // «сейчас открыто»
 
   function renderStatus() {
     var box = document.getElementById("status");
     var text = document.getElementById("statusText");
-    var hour = Number(new Intl.DateTimeFormat("en-GB", {
-      hour: "numeric", hour12: false, timeZone: cfg.timezone
-    }).format(new Date())) % 24;
-    var open = hour >= cfg.open.from && hour < cfg.open.to;
+    var now = astanaNow();
+    var today = hoursFor(now.day);
+    var open = now.hour >= today.from && now.hour < today.to;
     box.classList.toggle("is-open", open);
-    text.textContent = t(open ? "status_open" : "status_closed");
-  }
 
-  // меню
-
-  function formatPrice(n) {
-    return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " ₸";
-  }
-
-  function renderMenu() {
-    var tabs = document.getElementById("menuTabs");
-    var list = document.getElementById("menuList");
-    var empty = document.getElementById("menuEmpty");
-    tabs.textContent = "";
-    list.textContent = "";
-
-    if (!menu.length) { empty.hidden = false; return; }
-    empty.hidden = true;
-    if (activeTab >= menu.length) activeTab = 0;
-
-    menu.forEach(function (cat, i) {
-      var b = document.createElement("button");
-      b.type = "button";
-      b.setAttribute("role", "tab");
-      b.setAttribute("aria-selected", String(i === activeTab));
-      b.textContent = cat.title[lang] || cat.title.ru;
-      b.addEventListener("click", function () { activeTab = i; renderMenu(); });
-      tabs.appendChild(b);
-    });
-
-    menu[activeTab].items.forEach(function (it) {
-      var row = document.createElement("div");
-      row.className = "menu__item";
-      var name = document.createElement("strong");
-      name.textContent = it.name[lang] || it.name.ru;
-      var price = document.createElement("span");
-      price.textContent = formatPrice(it.price);
-      row.appendChild(name);
-      row.appendChild(price);
-      if (it.desc) {
-        var d = document.createElement("p");
-        d.textContent = it.desc[lang] || it.desc.ru;
-        row.appendChild(d);
-      }
-      list.appendChild(row);
-    });
-  }
-
-  // бронь через WhatsApp
-
-  function todayISO() {
-    return new Intl.DateTimeFormat("en-CA", { timeZone: cfg.timezone }).format(new Date());
-  }
-
-  function initForm() {
-    var form = document.getElementById("bookForm");
-    var error = document.getElementById("formError");
-    form.elements.date.min = todayISO();
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var f = form.elements;
-      ["name", "date", "time"].forEach(function (n) { f[n].classList.remove("is-bad"); });
-
-      var missing = ["name", "date", "time"].filter(function (n) { return !f[n].value.trim(); });
-      if (missing.length) {
-        missing.forEach(function (n) { f[n].classList.add("is-bad"); });
-        showError(t("err_fill"));
-        f[missing[0]].focus();
-        return;
-      }
-      if (f.date.value < todayISO()) {
-        f.date.classList.add("is-bad");
-        showError(t("err_past"));
-        f.date.focus();
-        return;
-      }
-      showError("");
-
-      var lines = [
-        t("wa_book"),
-        t("wa_name") + ": " + f.name.value.trim(),
-        t("wa_date") + ": " + f.date.value.split("-").reverse().join("."),
-        t("wa_time") + ": " + f.time.value,
-        t("wa_guests") + ": " + (f.guests.value || "2"),
-        t("wa_hall") + ": " + t("hall_" + f.hall.value)
-      ];
-      if (f.note.value.trim()) lines.push(t("wa_note") + ": " + f.note.value.trim());
-
-      window.open(waLink(lines.join("\n")), "_blank", "noopener");
-    });
-
-    function showError(msg) {
-      error.textContent = msg;
-      error.hidden = !msg;
+    if (open) {
+      text.textContent = "Сейчас открыто, до " + pad(today.to) + ":00";
+    } else if (now.hour < today.from) {
+      text.textContent = "Сейчас закрыто, откроемся сегодня в " + pad(today.from) + ":00";
+    } else {
+      var next = hoursFor((now.day + 1) % 7);
+      text.textContent = "Сейчас закрыто, откроемся завтра в " + pad(next.from) + ":00";
     }
   }
 
+  // калькулятор
+
+  var state = { mode: isWeekendDay(astanaNow().day) ? "weekend" : "weekday", minutes: 60, people: 1 };
+  var el = {
+    total: document.getElementById("calcTotal"),
+    detail: document.getElementById("calcDetail"),
+    slider: document.getElementById("minutes"),
+    minutesText: document.getElementById("minutesText"),
+    peopleOut: document.getElementById("peopleOut"),
+    modeBtns: document.querySelectorAll("[data-mode]"),
+    chips: document.querySelectorAll("[data-min]")
+  };
+
+  function durationText(m) {
+    if (m < 60) return m + " мин";
+    var h = Math.floor(m / 60), r = m % 60;
+    return r ? h + " ч " + r + " мин" : h + " ч";
+  }
+
+  function renderCalc() {
+    var rate = cfg.rate[state.mode];
+    el.total.textContent = money(rate * state.minutes * state.people);
+    el.detail.textContent = rate + " ₸ × " + state.minutes + " мин × " + state.people + " чел.";
+    el.minutesText.textContent = durationText(state.minutes);
+    el.peopleOut.textContent = state.people;
+    el.slider.value = state.minutes;
+    el.modeBtns.forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-mode") === state.mode));
+    });
+    el.chips.forEach(function (b) {
+      b.classList.toggle("is-on", Number(b.getAttribute("data-min")) === state.minutes);
+    });
+  }
+
+  el.modeBtns.forEach(function (b) {
+    b.addEventListener("click", function () { state.mode = b.getAttribute("data-mode"); renderCalc(); });
+  });
+  el.chips.forEach(function (b) {
+    b.addEventListener("click", function () { state.minutes = Number(b.getAttribute("data-min")); renderCalc(); });
+  });
+  el.slider.addEventListener("input", function () { state.minutes = Number(el.slider.value); renderCalc(); });
+  document.getElementById("peopleMinus").addEventListener("click", function () {
+    state.people = Math.max(1, state.people - 1); renderCalc();
+  });
+  document.getElementById("peoplePlus").addEventListener("click", function () {
+    state.people = Math.min(10, state.people + 1); renderCalc();
+  });
+
+  // котики
+
+  var catList = document.getElementById("catList");
+  cfg.cats.forEach(function (cat, i) {
+    var li = document.createElement("li");
+    li.className = "cat";
+
+    var ava = document.createElement("div");
+    ava.className = "cat__ava cat__ava--" + (i % 3);
+    ava.setAttribute("aria-hidden", "true");
+    ava.textContent = cat.name.charAt(0);
+    var img = document.createElement("img");
+    img.src = "img/cats/" + cat.id + ".jpg";
+    img.alt = "";
+    img.loading = "lazy";
+    img.addEventListener("error", function () { img.remove(); });
+    ava.appendChild(img);
+
+    var body = document.createElement("div");
+    var h = document.createElement("h3");
+    h.textContent = cat.name;
+    var p = document.createElement("p");
+    p.textContent = cat.text;
+    body.appendChild(h);
+    body.appendChild(p);
+
+    li.appendChild(ava);
+    li.appendChild(body);
+    catList.appendChild(li);
+  });
+
+  // мастер-классы
+
+  var classList = document.getElementById("classList");
+  cfg.classes.forEach(function (c) {
+    var li = document.createElement("li");
+    li.className = "class";
+
+    var main = document.createElement("div");
+    var h = document.createElement("h3");
+    h.textContent = c.title;
+    var p = document.createElement("p");
+    p.textContent = c.text;
+    main.appendChild(h);
+    main.appendChild(p);
+
+    var meta = document.createElement("div");
+    meta.className = "class__meta";
+    var price = document.createElement("strong");
+    price.textContent = money(c.price);
+    var time = document.createElement("span");
+    time.textContent = c.time + ", с человека";
+    meta.appendChild(price);
+    meta.appendChild(time);
+
+    var a = document.createElement("a");
+    a.className = "btn btn--ink btn--sm";
+    a.href = waLink(cfg.messages.classPrefix + "«" + c.title + "».");
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.textContent = "Записаться";
+    a.setAttribute("aria-label", "Записаться на мастер-класс «" + c.title + "» в WhatsApp");
+
+    li.appendChild(main);
+    li.appendChild(meta);
+    li.appendChild(a);
+    classList.appendChild(li);
+  });
+
   // старт
 
-  document.querySelectorAll("[data-lang]").forEach(function (btn) {
-    btn.addEventListener("click", function () { applyLang(btn.getAttribute("data-lang")); });
-  });
   document.getElementById("year").textContent = new Date().getFullYear();
-  initForm();
-  applyLang(detectLang());
+  renderCalc();
+  renderStatus();
   setInterval(renderStatus, 60000);
 })();

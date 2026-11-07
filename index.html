@@ -3,34 +3,36 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Хадия — халал шайхана в Астане</title>
-  <meta name="description" content="Хадия — халал шайхана в Астане: авторская и восточная кухня, тапчаны, VIP-залы и детская площадка. Проспект Тауелсиздик, 25. Ежедневно с 08:00 до 24:00.">
-  <meta name="theme-color" content="#0c2926">
-  <meta property="og:type" content="restaurant.restaurant">
-  <meta property="og:title" content="Хадия — халал шайхана в Астане">
-  <meta property="og:description" content="Авторская и восточная кухня, тапчаны, VIP-залы, детская площадка. Бронь через WhatsApp.">
+  <title>Kotiko — котокафе в Астане</title>
+  <meta name="description" content="Kotiko — котокафе в Астане со спасёнными котиками. Оплата поминутно от 45 ₸, без записи, с детьми от 4 лет. Мастер-классы. Улица Розы Баглановой, 3/1.">
+  <meta name="theme-color" content="#172033">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Kotiko — котокафе в Астане">
+  <meta property="og:description" content="Спасённые котики, оплата за минуты, без записи. Мастер-классы и помощь котикам.">
   <meta property="og:locale" content="ru_RU">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Noto+Serif+Display:ital,wght@0,500;0,600;1,500&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Restaurant",
-    "name": "Хадия",
-    "alternateName": "Хадия шайханасы",
-    "servesCuisine": ["Восточная", "Авторская"],
+    "@type": "LocalBusiness",
+    "name": "Kotiko",
+    "description": "Котокафе со спасёнными котиками в Астане. Оплата поминутно.",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "проспект Тауелсиздик, 25",
+      "streetAddress": "улица Розы Баглановой, 3/1",
       "addressLocality": "Астана",
       "addressCountry": "KZ"
     },
-    "telephone": "+77074122575",
-    "openingHours": "Mo-Su 08:00-24:00",
-    "sameAs": ["https://www.instagram.com/hadiya_shayhana_astana"]
+    "telephone": "+77074101312",
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "12:00", "closes": "22:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday", "Sunday"], "opens": "11:00", "closes": "22:00" }
+    ],
+    "sameAs": ["https://www.instagram.com/kotiko_cafe", "https://www.tiktok.com/@kotiko_cafe"]
   }
   </script>
 </head>
@@ -38,191 +40,144 @@
 
 <header class="topbar" id="top">
   <div class="wrap topbar__in">
-    <a class="logo" href="#top" aria-label="Хадия">
-      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 40V19C5 8 12 2 20 2s15 6 15 17v21" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M20 12l3.2 3.2L27.5 16l-1.1 4.2 3 3.1-4.2 1.1L24 28.5 20 26l-4 2.5-1.2-4.1-4.2-1.1 3-3.1L12.5 16l4.3-.8z" fill="currentColor"/></svg>
-      <span>Хадия</span>
+    <a class="logo" href="#top" aria-label="Kotiko">
+      <svg class="logo__mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M6 34V8l9 8h10l9-8v26c0 3-2 5-5 5H11c-3 0-5-2-5-5z" fill="currentColor"/></svg>
+      <span>Kotiko</span>
     </a>
     <nav class="nav" aria-label="Основная навигация">
-      <a href="#about" data-i18n="nav_about">О нас</a>
-      <a href="#spaces" data-i18n="nav_spaces">Залы</a>
-      <a href="#menu" data-i18n="nav_menu">Меню</a>
-      <a href="#book" data-i18n="nav_book">Бронь</a>
-      <a href="#contacts" data-i18n="nav_contacts">Контакты</a>
+      <a href="#price">Цены</a>
+      <a href="#cats">Котики</a>
+      <a href="#classes">Мастер-классы</a>
+      <a href="#help">Помощь</a>
+      <a href="#contacts">Контакты</a>
     </nav>
-    <div class="topbar__tools">
-      <div class="lang" role="group" aria-label="Язык / Тіл">
-        <button type="button" data-lang="ru" aria-pressed="true">RU</button>
-        <button type="button" data-lang="kk" aria-pressed="false">ҚАЗ</button>
-      </div>
-      <a class="btn btn--gold btn--sm" href="#book" data-i18n="cta_book_short">Забронировать</a>
-    </div>
+    <a class="btn btn--ginger btn--sm" href="#" data-wa="hello">WhatsApp</a>
   </div>
 </header>
 
 <main>
 
-<section class="hero">
+<section class="hero" id="price">
   <div class="wrap hero__in">
     <div class="hero__text">
       <p class="status" id="status" aria-live="polite"><span class="status__dot"></span><span id="statusText"></span></p>
-      <h1>Хадия</h1>
-      <p class="hero__lead" data-i18n="hero_lead">Халал шайхана для всей семьи</p>
+      <h1>Котокафе, где платят за минуты</h1>
+      <p class="hero__lead">Приходите на 15 минут или на 2 часа. Запись не нужна, с детьми можно от 4 лет. Все котики у нас спасённые.</p>
       <ul class="hero__facts">
-        <li data-i18n="hero_hours">Ежедневно с 08:00 до 24:00</li>
-        <li data-i18n="hero_address">Проспект Тауелсиздик, 25</li>
+        <li>Улица Розы Баглановой, 3/1</li>
+        <li>Будни 12:00–22:00, выходные 11:00–22:00</li>
       </ul>
       <div class="hero__actions">
-        <a class="btn btn--gold" href="#book" data-i18n="cta_book">Забронировать стол</a>
-        <a class="btn btn--line" href="#" data-wa="menu" data-i18n="cta_menu_wa">Попросить меню в WhatsApp</a>
+        <a class="btn btn--ginger" href="#contacts">Как добраться</a>
+        <a class="btn btn--line" href="#cats">Познакомиться с котиками</a>
       </div>
     </div>
 
-    <div class="arch" aria-hidden="true">
-      <svg class="arch__pattern" width="100%" height="100%">
-        <defs>
-          <pattern id="star" width="64" height="64" patternUnits="userSpaceOnUse">
-            <path d="M32 6l7.5 12.2 14-2.7-2.7 14L64 32 50.8 39.5l2.7 14-14-2.7L32 64l-7.5-12.2-14 2.7 2.7-14L0 32l13.2-7.5-2.7-14 14 2.7z" fill="none" stroke="#e3a72f" stroke-width="1" transform="translate(0 0) scale(.9) translate(3.5 3.5)"/>
-            <circle cx="32" cy="32" r="3" fill="#e3a72f"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#star)"/>
-      </svg>
-      <img class="arch__photo" src="img/hero.jpg" alt="" loading="eager" onerror="this.remove()">
+    <div class="calc" role="group" aria-labelledby="calcTitle">
+      <h2 id="calcTitle" class="calc__title">Сколько стоит визит</h2>
+
+      <div class="seg" role="group" aria-label="День посещения">
+        <button type="button" data-mode="weekday" aria-pressed="true">Будни</button>
+        <button type="button" data-mode="weekend" aria-pressed="false">Выходные и праздники</button>
+      </div>
+
+      <p class="calc__total" id="calcTotal" aria-live="polite">2 700 ₸</p>
+      <p class="calc__detail" id="calcDetail">45 ₸ × 60 мин × 1 чел.</p>
+
+      <label class="calc__label" for="minutes">Время: <strong id="minutesText">1 ч</strong></label>
+      <input class="range" id="minutes" type="range" min="15" max="240" step="5" value="60">
+      <div class="chips" role="group" aria-label="Быстрый выбор времени">
+        <button type="button" data-min="15">15 мин</button>
+        <button type="button" data-min="30">30 мин</button>
+        <button type="button" data-min="60">1 час</button>
+        <button type="button" data-min="120">2 часа</button>
+      </div>
+
+      <div class="people">
+        <span id="peopleLabel">Гостей</span>
+        <div class="stepper" role="group" aria-labelledby="peopleLabel">
+          <button type="button" id="peopleMinus" aria-label="Меньше гостей">−</button>
+          <output id="peopleOut">1</output>
+          <button type="button" id="peoplePlus" aria-label="Больше гостей">+</button>
+        </div>
+      </div>
+
+      <p class="calc__note">Цена за одного человека, оплата по времени. Итог считается по факту визита.</p>
     </div>
   </div>
 </section>
 
-<section class="section" id="about">
-  <div class="wrap about">
-    <h2 data-i18n="about_title">Новое уютное место для семьи</h2>
-    <div class="about__body">
-      <p data-i18n="about_text">Хадия — халал шайхана в Астане. Здесь готовят авторскую и восточную кухню, а в зале есть всё для большой семьи: тапчаны, VIP-залы и детская игровая площадка.</p>
-      <p class="about__small" data-i18n="about_small">Открыты каждый день, с утра до полуночи.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section section--mist" id="spaces">
-  <div class="wrap">
-    <h2 data-i18n="spaces_title">Где сесть</h2>
-    <ul class="spaces">
+<section class="section" id="how">
+  <div class="wrap how">
+    <h2>Как это работает</h2>
+    <ul class="how__list">
       <li>
-        <h3 data-i18n="sp1_t">Тапчан</h3>
-        <p data-i18n="sp1_d">Два тапчана: помост с мягкими подушками и столиком. Сидят по-восточному, всей семьёй или компанией.</p>
+        <h3>Приходите без записи</h3>
+        <p>Бронировать время не нужно: заходите, когда удобно, в часы работы.</p>
       </li>
       <li>
-        <h3 data-i18n="sp2_t">VIP-залы</h3>
-        <p data-i18n="sp2_d">Отдельные залы для праздников, деловых встреч и больших семейных поводов.</p>
+        <h3>Платите за время</h3>
+        <p>Минута стоит 45 ₸ в будни и 50 ₸ в выходные и праздники. Можно задержаться на 15 минут, а можно на 2 часа.</p>
       </li>
       <li>
-        <h3 data-i18n="sp3_t">Детская площадка</h3>
-        <p data-i18n="sp3_d">Игровая площадка, чтобы детям было чем заняться, пока взрослые за столом.</p>
+        <h3>С детьми от 4 лет</h3>
+        <p>Посещение возможно с детьми старше 4 лет. Взрослым, конечно, тоже можно.</p>
       </li>
     </ul>
-    <div class="gallery" id="gallery" aria-label="Фото">
-      <img src="img/gallery-1.jpg" alt="" loading="lazy" onerror="this.remove()">
-      <img src="img/gallery-2.jpg" alt="" loading="lazy" onerror="this.remove()">
-      <img src="img/gallery-3.jpg" alt="" loading="lazy" onerror="this.remove()">
-    </div>
   </div>
 </section>
 
-<section class="band" id="breakfast">
-  <div class="wrap band__in">
-    <p class="band__price">2 490 ₸</p>
-    <div>
-      <h2 data-i18n="bf_title">Завтраки в шайхане</h2>
-      <p data-i18n="bf_text">Начните день с завтрака в Хадии. Состав и время подачи уточняйте при бронировании.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="menu">
+<section class="section section--sky" id="cats">
   <div class="wrap">
-    <h2 data-i18n="menu_title">Меню</h2>
-    <div class="menu__tabs" id="menuTabs" role="tablist" aria-label="Разделы меню"></div>
-    <div class="menu__list" id="menuList"></div>
-    <div class="menu__empty" id="menuEmpty">
-      <p data-i18n="menu_empty">Актуальное меню с ценами пришлём в WhatsApp.</p>
-      <a class="btn btn--green" href="#" data-wa="menu" data-i18n="cta_menu_wa">Попросить меню в WhatsApp</a>
-    </div>
+    <h2>Знакомьтесь с котиками</h2>
+    <p class="lead">Здесь живут спасённые котики: кого-то нашли на улице, кого-то привезли из приюта или из семьи. О пристройстве и о тех, кто ищет дом, мы рассказываем <a class="link" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">в инстаграме</a>.</p>
+    <ul class="cats" id="catList"></ul>
   </div>
 </section>
 
-<section class="section section--mist" id="book">
-  <div class="wrap book">
-    <div class="book__info">
-      <h2 data-i18n="book_title">Забронировать стол</h2>
-      <p data-i18n="book_text">Заполните форму: заявка откроется в WhatsApp, а администратор подтвердит бронь.</p>
-      <dl class="phones">
-        <div><dt data-i18n="ph_book">Бронирование</dt><dd><a href="tel:+77074122575">+7 707 412 25 75</a></dd></div>
-        <div><dt data-i18n="ph_take">Самовывоз</dt><dd><a href="tel:+77071768071">+7 707 176 80 71</a></dd></div>
-      </dl>
-    </div>
-
-    <form class="form" id="bookForm" novalidate>
-      <label>
-        <span data-i18n="f_name">Имя</span>
-        <input type="text" name="name" autocomplete="given-name" required>
-      </label>
-      <div class="form__row">
-        <label>
-          <span data-i18n="f_date">Дата</span>
-          <input type="date" name="date" required>
-        </label>
-        <label>
-          <span data-i18n="f_time">Время</span>
-          <input type="time" name="time" min="08:00" max="23:30" required>
-        </label>
-      </div>
-      <div class="form__row">
-        <label>
-          <span data-i18n="f_guests">Гостей</span>
-          <input type="number" name="guests" min="1" max="100" value="2" inputmode="numeric" required>
-        </label>
-        <label>
-          <span data-i18n="f_hall">Где сесть</span>
-          <select name="hall">
-            <option value="any" data-i18n="h_any">Не важно</option>
-            <option value="tapchan" data-i18n="h_tapchan">Тапчан</option>
-            <option value="vip" data-i18n="h_vip">VIP-зал</option>
-          </select>
-        </label>
-      </div>
-      <label>
-        <span data-i18n="f_note">Комментарий</span>
-        <textarea name="note" rows="3"></textarea>
-      </label>
-      <p class="form__error" id="formError" role="alert" hidden></p>
-      <button class="btn btn--green btn--block" type="submit" data-i18n="f_submit">Отправить в WhatsApp</button>
-    </form>
+<section class="section" id="classes">
+  <div class="wrap">
+    <h2>Мастер-классы</h2>
+    <p class="lead">Цена указана за одного человека. Всё, что сделаете, заберёте с собой.</p>
+    <ul class="classes" id="classList"></ul>
   </div>
 </section>
 
-<section class="section" id="rating">
-  <div class="wrap rating">
-    <p class="rating__num">4,8</p>
+<section class="band" id="help">
+  <div class="wrap band__in">
     <div>
-      <p class="rating__text" data-i18n="rating_text">Рейтинг в 2ГИС, 8 930 оценок</p>
-      <a class="link" href="https://2gis.kz/astana/firm/70000001113725685/tab/reviews" target="_blank" rel="noopener" data-i18n="rating_link">Читать отзывы в 2ГИС</a>
+      <h2>Помогите котикам</h2>
+      <p>Котики у нас спасённые, и вы можете помочь им заботиться о них. Кроме донатов, можно принести то, что нужно в кафе каждый день.</p>
+      <ul class="band__list">
+        <li>Сухой корм Fitmin с олениной</li>
+        <li>Бентонитовый наполнитель</li>
+        <li>Хозяйственные товары</li>
+      </ul>
     </div>
+    <a class="btn btn--ink" href="#" data-wa="help">Узнать, как помочь</a>
   </div>
 </section>
 
-<section class="section section--dark" id="contacts">
+<section class="section section--ink" id="contacts">
   <div class="wrap contacts">
-    <h2 data-i18n="contacts_title">Как нас найти</h2>
+    <h2>Как нас найти</h2>
     <dl class="contacts__list">
-      <div><dt data-i18n="c_addr">Адрес</dt><dd data-i18n="c_addr_v">проспект Тауелсиздик, 25, Алматы район, Астана</dd></div>
-      <div><dt data-i18n="c_hours">Часы работы</dt><dd data-i18n="c_hours_v">Ежедневно с 08:00 до 24:00</dd></div>
-      <div><dt data-i18n="ph_book">Бронирование</dt><dd><a href="tel:+77074122575">+7 707 412 25 75</a></dd></div>
-      <div><dt data-i18n="ph_take">Самовывоз</dt><dd><a href="tel:+77071768071">+7 707 176 80 71</a></dd></div>
+      <div><dt>Адрес</dt><dd>улица Розы Баглановой, 3/1, Нура район, Астана</dd></div>
+      <div>
+        <dt>Часы работы</dt>
+        <dd>Будни с 12:00 до 22:00<br>Выходные и праздники с 11:00 до 22:00</dd>
+      </div>
+      <div><dt>Телефон и WhatsApp</dt><dd><a href="tel:+77074101312">+7 707 410 13 12</a></dd></div>
+      <div><dt>Рейтинг в 2ГИС</dt><dd>4,9 · 832 оценки · <a class="link link--light" href="https://2gis.kz/astana/firm/70000001091591591/tab/reviews" target="_blank" rel="noopener">отзывы</a></dd></div>
     </dl>
     <div class="contacts__links">
-      <a class="btn btn--gold" href="https://2gis.kz/astana/firm/70000001113725685" target="_blank" rel="noopener" data-i18n="c_2gis">Открыть в 2ГИС</a>
-      <a class="btn btn--line" href="https://www.instagram.com/hadiya_shayhana_astana" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn--ginger" href="https://2gis.kz/astana/firm/70000001091591591" target="_blank" rel="noopener">Открыть в 2ГИС</a>
       <a class="btn btn--line" href="#" data-wa="hello">WhatsApp</a>
+      <a class="btn btn--line" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn--line" href="https://www.tiktok.com/@kotiko_cafe" target="_blank" rel="noopener">TikTok</a>
+      <a class="btn btn--line" href="https://www.threads.com/@kotiko_cafe" target="_blank" rel="noopener">Threads</a>
     </div>
+    <p class="contacts__note">Правила посещения собраны в актуальных историях инстаграма <a class="link link--light" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">@kotiko_cafe</a>.</p>
   </div>
 </section>
 
@@ -230,13 +185,12 @@
 
 <footer class="footer">
   <div class="wrap footer__in">
-    <span>© <span id="year"></span> Хадия</span>
-    <span data-i18n="footer_note">Халал шайхана, Астана</span>
+    <span>© <span id="year"></span> Kotiko</span>
+    <span>Котокафе, Астана</span>
   </div>
 </footer>
 
 <script src="js/data.js"></script>
-<script src="js/i18n.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
