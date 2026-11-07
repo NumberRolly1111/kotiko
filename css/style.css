@@ -196,7 +196,7 @@ svg { display: block; }
 }
 
 /* ticker strip across the hero edge */
-.ticker { position: relative; z-index: 5; margin: -44px -4vw 0; padding: 14px 0; background: var(--ink); color: var(--butter); transform: rotate(-1.6deg); overflow: hidden; border-block: var(--bw) solid var(--ink); }
+.ticker { position: relative; z-index: 5; margin: -44px -4vw -26px; padding: 14px 0; background: var(--ink); color: var(--butter); transform: rotate(-1.6deg); overflow: hidden; border-block: var(--bw) solid var(--ink); }
 .ticker__track { display: flex; width: max-content; animation: marquee 34s linear infinite; }
 .ticker:hover .ticker__track { animation-play-state: paused; }
 .ticker__group { display: flex; align-items: center; gap: 28px; padding-right: 28px; font: 600 clamp(17px, 2vw, 22px)/1 var(--display); white-space: nowrap; }
@@ -204,7 +204,7 @@ svg { display: block; }
 
 /* sections */
 .section { position: relative; padding-block: clamp(72px, 9vw, 120px); }
-.section--white { background: #fff; padding-top: clamp(96px, 11vw, 150px); }
+.section--white { position: relative; z-index: 1; background: #fff; padding-top: calc(clamp(96px, 11vw, 150px) + 26px); }
 .section--paper { background: var(--paper); }
 .section--tang { background: var(--tang); }
 .section--orange { background: var(--tang); overflow: hidden; }
@@ -347,7 +347,7 @@ svg { display: block; }
   .contacts__links .btn { flex: 1 1 calc(50% - 8px); }
   .footer__in { flex-direction: column; }
   .class__price { right: -6px; width: 92px; height: 92px; font-size: 15px; }
-  .ticker { margin-top: -32px; }
+  .ticker { margin-top: -32px; margin-bottom: -26px; }
 }
 
 /* instagram-highlights look: orange badge circles, tuxedo cat */
