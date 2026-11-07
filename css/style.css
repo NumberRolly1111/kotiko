@@ -539,32 +539,21 @@ main > .section:first-child { min-height: 70vh; }
 ::view-transition-new(root) { z-index: 2; }
 
 /* 404 */
-.nf { position: relative; overflow: hidden; }
-.nf__in { position: relative; z-index: 1; }
-.nf__digits { display: flex; align-items: flex-end; gap: .04em; margin: 0; font: 700 clamp(120px, 24vw, 280px)/.8 var(--display); letter-spacing: -.05em; color: var(--ink); }
-.nf__cat { width: 1.5em; height: auto; flex: none; overflow: visible; margin-bottom: -.02em; filter: drop-shadow(.025em .025em 0 var(--ink)); }
-.nf__h { font-size: clamp(30px, 5vw, 56px); margin-top: 8px; }
-.nf__btns { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; }
-.nf__paws .paw { width: 46px; height: 46px; transform: rotate(-90deg); }
-.nf__paws .paw:nth-child(1) { left: 6%; bottom: 8%; }
-.nf__paws .paw:nth-child(2) { left: 16%; bottom: 20%; }
-.nf__paws .paw:nth-child(3) { left: 27%; bottom: 9%; }
-.nf__paws .paw:nth-child(4) { left: 38%; bottom: 21%; }
-.nf__paws .paw:nth-child(5) { left: 49%; bottom: 10%; }
-.nf__paws .paw:nth-child(6) { left: 60%; bottom: 22%; }
-.nf__paws .paw:nth-child(7) { left: 71%; bottom: 11%; }
-
-@media (max-width: 620px) { .nf__btns .btn { width: 100%; } .nf__paws .paw { width: 34px; height: 34px; } .nf__paws .paw:nth-child(n+6) { display: none; } }
-.nf__paws .paw:nth-child(1) { animation-delay: 1.25s; }
-.nf__paws .paw:nth-child(2) { animation-delay: 1.50s; }
-.nf__paws .paw:nth-child(3) { animation-delay: 1.75s; }
-.nf__paws .paw:nth-child(4) { animation-delay: 2.00s; }
-.nf__paws .paw:nth-child(5) { animation-delay: 2.25s; }
-.nf__paws .paw:nth-child(6) { animation-delay: 2.50s; }
-.nf__paws .paw:nth-child(7) { animation-delay: 2.75s; }
-.nf__digits { margin-bottom: 36px; } .nf__h { margin-top: 0; }
-.nf__in { min-width: 0; max-width: 100%; }
-.nf__digits { max-width: 100%; font-size: clamp(72px, 19vw, 280px); }
-.nf__cat { width: 1.35em; flex: 0 1 auto; min-width: 0; }
-.nf__btns { max-width: 100%; }
-@media (max-width: 620px) { .nf__btns .btn { width: 100%; max-width: 100%; box-sizing: border-box; } }
+.nf2 { background: var(--orange, #ff6a1f); padding: 90px 0 70px; overflow: hidden; }
+.nf2__in { display: flex; justify-content: center; min-width: 0; }
+.nf2__card { position: relative; width: min(420px, 100%); box-sizing: border-box; background: #fffbf2; color: #1c1530; border: 3px solid #1c1530; border-radius: 18px 18px 0 0; box-shadow: 8px 8px 0 #1c1530; padding: 54px 26px 34px; transform: rotate(-1.5deg); font-family: "JetBrains Mono", ui-monospace, monospace; text-align: center; }
+.nf2__card::after { content: ""; position: absolute; left: -3px; right: -3px; bottom: -15px; height: 15px; background: linear-gradient(135deg, #fffbf2 50%, transparent 50%) 0 0/20px 15px, linear-gradient(225deg, #fffbf2 50%, transparent 50%) 0 0/20px 15px; filter: drop-shadow(3px 3px 0 #1c1530); }
+.nf2__cat { position: absolute; left: 50%; top: -66px; width: 130px; height: auto; transform: translateX(-50%); overflow: visible; z-index: -1; }
+.nf2__brand { margin: 0; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+.nf2__big { margin: 6px 0 0; font: 700 84px/1 var(--display); letter-spacing: -.04em; color: #ff6a1f; -webkit-text-stroke: 3px #1c1530; paint-order: stroke fill; }
+.nf2__sub { margin: 4px 0 18px; font-weight: 700; font-size: 18px; }
+.nf2__rows { margin: 0; border-top: 2px dashed #1c1530; border-bottom: 2px dashed #1c1530; padding: 12px 0; text-align: left; }
+.nf2__rows div { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; font-size: 14px; }
+.nf2__rows dt, .nf2__rows dd { margin: 0; }
+.nf2__rows dd { text-align: right; overflow-wrap: anywhere; }
+.nf2__sum { font-weight: 700; font-size: 17px !important; }
+.nf2__note { margin: 16px 0; font-size: 14px; line-height: 1.5; font-family: var(--body); }
+.nf2__bar { height: 34px; margin: 0 0 20px; background: repeating-linear-gradient(90deg, #1c1530 0 2px, transparent 2px 5px, #1c1530 5px 6px, transparent 6px 10px, #1c1530 10px 13px, transparent 13px 16px); }
+.nf2 .nf__btns { display: flex; flex-direction: column; gap: 14px; }
+.nf2 .btn { width: 100%; box-sizing: border-box; }
+html[data-theme="dark"] .nf2__card, html[data-theme="dark"] .nf2__card::after { --x: 0; }
