@@ -10,7 +10,7 @@
 
 ## SEO
 
-`sitemap.xml`, `robots.txt`, превью `og.png` (1200×630) и `404.html` (работает на GitHub Pages, использует `<base href="/hadiya/">`; при смене адреса или домена поправьте base, canonical и sitemap).
+`sitemap.xml`, `robots.txt`, превью `og.png` (1200×630) и `404.html` (работает на GitHub Pages, использует `<base href="/hadiya/">`; сайт на домене kotiko.w-smp.in, при смене адреса поправьте base, canonical и sitemap).
 
 ## Запуск
 
