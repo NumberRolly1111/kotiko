@@ -563,3 +563,8 @@ main > .section:first-child { min-height: 70vh; }
 .nf__paws .paw:nth-child(6) { animation-delay: 2.50s; }
 .nf__paws .paw:nth-child(7) { animation-delay: 2.75s; }
 .nf__digits { margin-bottom: 36px; } .nf__h { margin-top: 0; }
+.nf__in { min-width: 0; max-width: 100%; }
+.nf__digits { max-width: 100%; font-size: clamp(72px, 19vw, 280px); }
+.nf__cat { width: 1.35em; flex: 0 1 auto; min-width: 0; }
+.nf__btns { max-width: 100%; }
+@media (max-width: 620px) { .nf__btns .btn { width: 100%; max-width: 100%; box-sizing: border-box; } }
