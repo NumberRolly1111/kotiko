@@ -414,3 +414,7 @@ main > .section:first-child { min-height: 70vh; }
 
 .cat .a-eye { animation-duration: var(--bt, 5.5s); }
 .pupil { transition: transform .18s cubic-bezier(.2,.8,.3,1); }
+.cat__ava .a-eye { transform-box: fill-box; transform-origin: center; animation: blink var(--bt, 5.5s) infinite; animation-delay: var(--bd, 0s); }
+.cat__ava .a-ear { transform-box: fill-box; transform-origin: 50% 100%; }
+.meet__item:hover .a-ear--l { animation: ear-l .5s var(--spring); }
+.meet__item:hover .a-ear--r { animation: ear-r .5s var(--spring) .06s; }
