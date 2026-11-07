@@ -135,14 +135,13 @@
 
   // котик над чеком следит за курсором
 
-  var peek = document.querySelector(".peek__head");
-  var pupils = peek ? Array.prototype.slice.call(peek.querySelectorAll(".pupil")) : [];
+  var pupils = Array.prototype.slice.call(document.querySelectorAll(".peek__head .pupil, .corner__head .pupil"));
   var lookRaf = 0, lastX = 0, lastY = 0;
 
   function look() {
     lookRaf = 0;
-    var scale = peek.getBoundingClientRect().width / 260;
     pupils.forEach(function (p) {
+      var scale = p.ownerSVGElement.getBoundingClientRect().width / 260 || 1;
       var r = p.parentNode.querySelector(".sclera").getBoundingClientRect();
       var dx = lastX - (r.left + r.width / 2), dy = lastY - (r.top + r.height / 2);
       var d = Math.hypot(dx, dy) || 1;
@@ -220,9 +219,31 @@
     var p = document.createElement("p");
     p.textContent = cat.text;
 
+    var tags = document.createElement("ul");
+    tags.className = "tags";
+    ["спасённый"].concat(cat.tags || []).forEach(function (t, k) {
+      var tg = document.createElement("li");
+      tg.textContent = t;
+      if (k === 0) tg.className = "tag--main";
+      tags.appendChild(tg);
+    });
+    p.className = "cat__text";
+    var more = document.createElement("button");
+    more.type = "button";
+    more.className = "cat__more";
+    more.textContent = "Читать историю";
+    more.setAttribute("aria-expanded", "false");
+    more.addEventListener("click", function () {
+      var open = li.classList.toggle("is-open");
+      more.textContent = open ? "Свернуть" : "Читать историю";
+      more.setAttribute("aria-expanded", String(open));
+    });
+
     li.appendChild(ava);
     li.appendChild(h);
+    li.appendChild(tags);
     li.appendChild(p);
+    li.appendChild(more);
     catList.appendChild(li);
   });
 
@@ -275,6 +296,15 @@
 
   // мастер-классы
 
+  var S = 'fill="none" stroke="#1c1530" stroke-width="2.600" stroke-linecap="round" stroke-linejoin="round"';
+  var CLASS_ICONS = [
+    '<svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="26" rx="9" ry="7.500" fill="#fff" stroke="#1c1530" stroke-width="2.600"/><ellipse cx="9" cy="17" rx="3.200" ry="4.200" fill="#fff" stroke="#1c1530" stroke-width="2.400"/><ellipse cx="16" cy="10" rx="3.200" ry="4.200" fill="#fff" stroke="#1c1530" stroke-width="2.400"/><ellipse cx="24" cy="10" rx="3.200" ry="4.200" fill="#fff" stroke="#1c1530" stroke-width="2.400"/><ellipse cx="31" cy="17" rx="3.200" ry="4.200" fill="#fff" stroke="#1c1530" stroke-width="2.400"/></svg>',
+    '<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="7" y="6" width="26" height="22" rx="2.500" fill="#fff" stroke="#1c1530" stroke-width="2.600"/><path d="M12 22l5-6 4 4 3-3 4 5" ' + S + '/><circle cx="26" cy="12" r="2" fill="#1c1530"/><path d="M14 28l-4 7M26 28l4 7" ' + S + '/></svg>',
+    '<svg viewBox="0 0 40 40" aria-hidden="true"><rect x="11" y="17" width="18" height="17" rx="3" fill="#fff" stroke="#1c1530" stroke-width="2.600"/><path d="M20 17v-3" ' + S + '/><path d="M20 4c4 3 4.500 6 0 9-4.500-3-4-6 0-9z" fill="#ffd15c" stroke="#1c1530" stroke-width="2.400" stroke-linejoin="round"/></svg>',
+    '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 34h24M20 34V22M12 22h16" ' + S + '/><rect x="16" y="12" width="8" height="10" rx="2" fill="#fff" stroke="#1c1530" stroke-width="2.600"/><path d="M20 4c3 2.500 3.500 5 0 7.500-3.500-2.500-3-5 0-7.500z" fill="#ffd15c" stroke="#1c1530" stroke-width="2.400" stroke-linejoin="round"/></svg>'
+  ];
+
+
   var classList = document.getElementById("classList");
   var classRots = [-1, 1.1, 0.8, -1.2];
   if (classList) cfg.classes.forEach(function (c, i) {
@@ -284,6 +314,9 @@
     li.style.setProperty("--d", ((i % 2) * 0.1) + "s");
     li.setAttribute("data-reveal", "pop");
 
+    var ico = document.createElement("div");
+    ico.className = "class__icon";
+    ico.innerHTML = CLASS_ICONS[i % CLASS_ICONS.length];
     var price = document.createElement("div");
     price.className = "class__price";
     price.textContent = money(c.price);
@@ -309,6 +342,7 @@
     foot.appendChild(a);
 
     li.appendChild(price);
+    li.appendChild(ico);
     li.appendChild(h);
     li.appendChild(p);
     li.appendChild(foot);
@@ -353,6 +387,121 @@
     tk.addEventListener("pointerleave", function () { tk.classList.remove("is-paused"); });
     tk.addEventListener("click", function () { tk.classList.toggle("is-paused"); });
   }
+
+  // тема
+
+  var themeBtn = document.getElementById("theme");
+  function applyTheme(t) {
+    if (t) document.documentElement.setAttribute("data-theme", t); else document.documentElement.removeAttribute("data-theme");
+    if (themeBtn) themeBtn.setAttribute("aria-pressed", String(t === "dark"));
+  }
+  applyTheme(document.documentElement.getAttribute("data-theme"));
+  if (themeBtn) themeBtn.addEventListener("click", function () {
+    var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    applyTheme(next);
+    try { localStorage.setItem("kotiko-theme", next); } catch (e) {}
+  });
+
+  // шаги лапок в шапке показывают прогресс прокрутки
+
+  var trail = document.getElementById("trail");
+  var corner = document.getElementById("corner");
+  var paws = trail ? Array.prototype.slice.call(trail.querySelectorAll("svg")) : [];
+  var scrollTick = 0;
+  function onScroll() {
+    scrollTick = 0;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var prog = max > 0 ? window.scrollY / max : 0;
+    var lit = Math.round(prog * paws.length);
+    paws.forEach(function (p, i) { p.classList.toggle("is-lit", i < lit); });
+    if (corner) {
+      var nearEnd = max - window.scrollY < 140;
+      corner.classList.toggle("is-on", window.scrollY > 360 && !nearEnd);
+    }
+  }
+  if (paws.length || corner) {
+    window.addEventListener("scroll", function () { if (!scrollTick) scrollTick = requestAnimationFrame(onScroll); }, { passive: true });
+    onScroll();
+  }
+  if (corner) corner.addEventListener("click", function () {
+    corner.classList.remove("is-meow");
+    void corner.offsetWidth;
+    corner.classList.add("is-meow");
+    setTimeout(function () { corner.classList.remove("is-meow"); }, 1400);
+  });
+
+  // сохранить чек картинкой
+
+  var saveBtn = document.getElementById("saveReceipt");
+  if (saveBtn) saveBtn.addEventListener("click", function () {
+    var fontsReady = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+    fontsReady.then(function () {
+      var W = 640, H = 740, k = 2;
+      var cv = document.createElement("canvas");
+      cv.width = W * k; cv.height = H * k;
+      var c = cv.getContext("2d");
+      c.scale(k, k);
+      c.fillStyle = "#ff6a1f"; c.fillRect(0, 0, W, H);
+      // чек
+      var x = 60, w = W - 120, y = 70, h = H - 150;
+      c.fillStyle = "#1c1530";
+      c.beginPath(); c.rect(x + 8, y + 8, w, h); c.fill();
+      c.fillStyle = "#fffdf6";
+      c.beginPath(); c.rect(x, y, w, h); c.fill();
+      c.beginPath(); c.moveTo(x, y + h);
+      for (var zx = x, up = false; zx < x + w; zx += 16, up = !up) c.lineTo(zx + 8, y + h + (up ? 0 : 14));
+      c.lineTo(x + w, y + h); c.closePath(); c.fill();
+      var mono = '"JetBrains Mono", ui-monospace, Menlo, monospace', disp = 'Unbounded, "Montserrat", Arial, sans-serif';
+      c.fillStyle = "#1c1530"; c.textAlign = "left";
+      c.font = "700 34px " + disp; c.fillText("Kotiko", x + 36, y + 70);
+      c.font = "500 17px " + mono; c.fillStyle = "#4b4560";
+      var date = new Intl.DateTimeFormat("ru-RU", { timeZone: cfg.timezone, day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date());
+      c.fillText("Котокафе, Астана · " + date, x + 36, y + 100);
+      c.strokeStyle = "#1c1530"; c.lineWidth = 2; c.setLineDash([8, 7]);
+      function dash(yy) { c.beginPath(); c.moveTo(x + 30, yy); c.lineTo(x + w - 30, yy); c.stroke(); }
+      dash(y + 128);
+      var rate = cfg.rate[state.mode];
+      var rows = [
+        ["День", state.mode === "weekend" ? "выходные и праздники" : "будни"],
+        ["Время", durationText(state.minutes)],
+        ["Гостей", String(state.people)],
+        ["Цена", rate + " ₸ / мин"]
+      ];
+      c.font = "500 20px " + mono;
+      rows.forEach(function (r, i) {
+        var yy = y + 178 + i * 46;
+        c.textAlign = "left"; c.fillStyle = "#4b4560"; c.fillText(r[0], x + 36, yy);
+        c.textAlign = "right"; c.fillStyle = "#1c1530"; c.fillText(r[1], x + w - 36, yy);
+      });
+      dash(y + 178 + rows.length * 46 - 14);
+      var total = money(rate * state.minutes * state.people).replace(/\u00a0/g, " ");
+      c.textAlign = "left"; c.font = "700 22px " + mono; c.fillStyle = "#1c1530"; c.fillText("Итого", x + 36, y + 178 + rows.length * 46 + 62);
+      c.textAlign = "right";
+      c.font = "700 54px " + disp;
+      var tw = c.measureText(total).width;
+      c.fillStyle = "#ffd15c"; c.fillRect(x + w - 36 - tw - 8, y + 178 + rows.length * 46 + 42, tw + 16, 24);
+      c.fillStyle = "#1c1530"; c.fillText(total, x + w - 36, y + 178 + rows.length * 46 + 66);
+      c.setLineDash([]);
+      c.textAlign = "left"; c.font = "400 16px " + mono; c.fillStyle = "#4b4560";
+      c.fillText("Оплата по времени, цена за человека.", x + 36, y + h - 64);
+      c.fillText("kotiko.w-smp.in", x + 36, y + h - 36);
+      c.textAlign = "center"; c.font = "700 20px " + disp; c.fillStyle = "#1c1530";
+      c.fillText("Ждём вас в гости!", W / 2, H - 30);
+      cv.toBlob(function (blob) {
+        if (!blob) return;
+        var file = new File([blob], "kotiko-chek.png", { type: "image/png" });
+        if (navigator.canShare && navigator.canShare({ files: [file] }) && /Mobi|Android/i.test(navigator.userAgent)) {
+          navigator.share({ files: [file], title: "Мой чек в Kotiko" }).catch(function () {});
+        } else {
+          var a = document.createElement("a");
+          a.href = URL.createObjectURL(blob);
+          a.download = "kotiko-chek.png";
+          document.body.appendChild(a); a.click(); a.remove();
+          setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+        }
+      }, "image/png");
+    });
+  });
 
   // старт
 

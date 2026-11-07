@@ -435,3 +435,82 @@ main > .section:first-child { min-height: 70vh; }
 .nf__h { font-size: clamp(30px, 5vw, 56px); }
 @media (max-width: 800px) { .voices { grid-template-columns: 1fr; } }
 .ticker { cursor: pointer; }
+
+/* cat cards: tags and story toggle */
+.cats { align-items: start; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 12px; }
+.tags li { padding: 3px 11px; border: 2px solid var(--ink); border-radius: 999px; background: rgba(255,255,255,.55); font: 600 12.5px/1.5 var(--sans); }
+.tags .tag--main { background: var(--ink); color: #fff; }
+.cat__text { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.cat.is-open .cat__text { display: block; }
+.cat__more { margin-top: 12px; padding: 0; border: 0; background: none; font: 700 14px/1.4 var(--sans); color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 3px; cursor: pointer; }
+.cat__more:hover { color: #a1370a; }
+
+/* class icons */
+.class__icon { width: 64px; height: 64px; display: grid; place-items: center; background: var(--tang); border: var(--bw) solid var(--ink); border-radius: 50%; transform: rotate(-6deg); transition: transform .4s var(--spring); }
+.class__icon svg { width: 40px; height: 40px; }
+.class:hover .class__icon { transform: rotate(8deg) scale(1.08); }
+
+/* save receipt button */
+.save { margin-top: 14px; }
+
+/* paw trail in the header */
+.topbar { position: sticky; }
+.trail { position: absolute; left: 0; right: 0; top: 100%; height: 26px; display: flex; justify-content: space-around; align-items: flex-start; pointer-events: none; overflow: hidden; z-index: 1; }
+.trail svg { width: 17px; height: 17px; fill: var(--ink); opacity: 0; transform: translateY(-8px) scale(.4) rotate(90deg); transition: opacity .3s, transform .4s var(--spring); }
+.trail svg:nth-child(odd) { margin-top: 5px; }
+.trail svg.is-lit { opacity: .9; fill: var(--tang); transform: translateY(0) scale(1) rotate(90deg); }
+.nav { z-index: 2; }
+
+/* corner cat */
+.corner { position: fixed; left: 16px; bottom: 0; z-index: 25; width: 128px; padding: 0; border: 0; background: none; cursor: pointer; transform: translateY(105%); transition: transform .6s var(--spring); filter: drop-shadow(3px 3px 0 var(--ink)); }
+.corner.is-on { transform: translateY(26%); }
+.corner.is-on:hover, .corner.is-meow { transform: translateY(8%); }
+.corner__head { display: block; width: 100%; height: auto; overflow: visible; }
+.corner__bubble { position: absolute; left: 70%; top: -26px; padding: 3px 12px; background: #fff; border: 2.5px solid var(--ink); border-radius: 999px; font: 700 14px/1.4 var(--display); opacity: 0; transform: translateY(8px) scale(.8); transition: opacity .2s, transform .3s var(--spring); pointer-events: none; white-space: nowrap; }
+.corner.is-meow .corner__bubble { opacity: 1; transform: none; }
+.corner .ear--l, .corner .ear--r { transform-box: fill-box; transform-origin: 50% 100%; }
+.corner.is-meow .ear--l { animation: ear-l .5s var(--spring); }
+.corner.is-meow .ear--r { animation: ear-r .5s var(--spring) .08s; }
+
+/* whatsapp button on phones */
+.wa-fab { display: none; position: fixed; right: 16px; bottom: 16px; z-index: 40; width: 60px; height: 60px; place-items: center; border-radius: 50%; background: #35c46f; border: var(--bw) solid var(--ink); box-shadow: 4px 4px 0 var(--ink); transition: transform .15s var(--spring); }
+.wa-fab:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+@media (max-width: 900px) { .wa-fab { display: grid; } .corner { width: 104px; left: 10px; } }
+
+/* theme toggle */
+.theme { width: 46px; height: 46px; flex: none; padding: 0; background: #fff; border: var(--bw) solid var(--ink); border-radius: 50%; box-shadow: 3px 3px 0 var(--ink); cursor: pointer; display: grid; place-items: center; transition: transform .15s var(--spring); }
+.theme:hover { transform: translate(-1px, -1px) rotate(-8deg); }
+.theme .theme__moon { display: none; }
+[data-theme="dark"] .theme .theme__sun { display: none; }
+[data-theme="dark"] .theme .theme__moon { display: block; }
+.topbar__in .theme { margin-left: 4px; }
+@media (max-width: 900px) { .topbar__in .theme { margin-left: auto; } .burger { margin-left: 0; } }
+
+/* dark theme */
+[data-theme="dark"] { color-scheme: dark; --paper: #151021; --muted: #bfb8d4; --sh: 6px 6px 0 #05030b; }
+[data-theme="dark"] body { color: #f6f0e4; }
+[data-theme="dark"] .topbar { background: #151021; border-bottom-color: #3a3256; color: #f6f0e4; }
+[data-theme="dark"] .nav { background: #151021; border-bottom-color: #3a3256; }
+[data-theme="dark"] .nav a { border-bottom-color: rgba(255,255,255,.14); }
+[data-theme="dark"] .section--white { background: #1c1630; }
+[data-theme="dark"] .section--paper { background: #151021; }
+[data-theme="dark"] .trail svg { fill: #f6f0e4; }
+[data-theme="dark"] .trail svg.is-lit { fill: var(--tang); }
+[data-theme="dark"] .sticker, [data-theme="dark"] .ticket, [data-theme="dark"] .class, [data-theme="dark"] .status { --muted: #4b4560; color: var(--ink); }
+[data-theme="dark"] .sticker { box-shadow: 6px 6px 0 #05030b; }
+[data-theme="dark"] .sticker:hover { box-shadow: 9px 9px 0 #05030b; }
+[data-theme="dark"] .mapbox { background: #fff; }
+[data-theme="dark"] .link:not(.link--light) { color: var(--tang); }
+[data-theme="dark"] .voice .link, [data-theme="dark"] .cat__more, [data-theme="dark"] .sticker .link { color: var(--ink); }
+[data-theme="dark"] .meet__item { color: #f6f0e4; }
+[data-theme="dark"] .logo { color: #f6f0e4; }
+[data-theme="dark"] .corner, [data-theme="dark"] .receipt { filter: drop-shadow(3px 3px 0 #05030b); }
+[data-theme="dark"] .receipt { filter: drop-shadow(7px 7px 0 #05030b); }
+[data-theme="dark"] .hero .receipt { filter: drop-shadow(7px 7px 0 var(--ink)); }
+.trail { top: calc(100% - 12px); height: 20px; }
+.trail svg { width: 15px; height: 15px; }
+.trail svg:nth-child(odd) { margin-top: 3px; }
+[data-theme="dark"] .logo__mark path, [data-theme="dark"] .logo__mark ellipse:first-of-type { stroke: #f6f0e4; }
+[data-theme="dark"] .hero, [data-theme="dark"] .section--orange, [data-theme="dark"] .nf { color: var(--ink); }
+@media (max-width: 620px) { .class p { padding-right: 0; } .class h3 { padding-right: 70px; } }
