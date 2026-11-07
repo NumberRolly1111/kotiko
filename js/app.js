@@ -135,7 +135,7 @@
 
   // котик над чеком следит за курсором
 
-  var pupils = Array.prototype.slice.call(document.querySelectorAll(".peek__head .pupil, .corner__head .pupil"));
+  var pupils = Array.prototype.slice.call(document.querySelectorAll(".peek__head .pupil"));
   var lookRaf = 0, lastX = 0, lastY = 0;
 
   function look() {
@@ -405,7 +405,6 @@
   // шаги лапок в шапке показывают прогресс прокрутки
 
   var trail = document.getElementById("trail");
-  var corner = document.getElementById("corner");
   var paws = trail ? Array.prototype.slice.call(trail.querySelectorAll("svg")) : [];
   var scrollTick = 0;
   function onScroll() {
@@ -414,22 +413,11 @@
     var prog = max > 0 ? window.scrollY / max : 0;
     var lit = Math.round(prog * paws.length);
     paws.forEach(function (p, i) { p.classList.toggle("is-lit", i < lit); });
-    if (corner) {
-      var nearEnd = max - window.scrollY < 140;
-      corner.classList.toggle("is-on", window.scrollY > 360 && !nearEnd);
-    }
   }
-  if (paws.length || corner) {
+  if (paws.length) {
     window.addEventListener("scroll", function () { if (!scrollTick) scrollTick = requestAnimationFrame(onScroll); }, { passive: true });
     onScroll();
   }
-  if (corner) corner.addEventListener("click", function () {
-    corner.classList.remove("is-meow");
-    void corner.offsetWidth;
-    corner.classList.add("is-meow");
-    setTimeout(function () { corner.classList.remove("is-meow"); }, 1400);
-  });
-
   // сохранить чек картинкой
 
   var saveBtn = document.getElementById("saveReceipt");

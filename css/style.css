@@ -462,21 +462,10 @@ main > .section:first-child { min-height: 70vh; }
 .trail svg.is-lit { opacity: .9; fill: var(--tang); transform: translateY(0) scale(1) rotate(90deg); }
 .nav { z-index: 2; }
 
-/* corner cat */
-.corner { position: fixed; left: 16px; bottom: 0; z-index: 25; width: 128px; padding: 0; border: 0; background: none; cursor: pointer; transform: translateY(105%); transition: transform .6s var(--spring); filter: drop-shadow(3px 3px 0 var(--ink)); }
-.corner.is-on { transform: translateY(26%); }
-.corner.is-on:hover, .corner.is-meow { transform: translateY(8%); }
-.corner__head { display: block; width: 100%; height: auto; overflow: visible; }
-.corner__bubble { position: absolute; left: 70%; top: -26px; padding: 3px 12px; background: #fff; border: 2.5px solid var(--ink); border-radius: 999px; font: 700 14px/1.4 var(--display); opacity: 0; transform: translateY(8px) scale(.8); transition: opacity .2s, transform .3s var(--spring); pointer-events: none; white-space: nowrap; }
-.corner.is-meow .corner__bubble { opacity: 1; transform: none; }
-.corner .ear--l, .corner .ear--r { transform-box: fill-box; transform-origin: 50% 100%; }
-.corner.is-meow .ear--l { animation: ear-l .5s var(--spring); }
-.corner.is-meow .ear--r { animation: ear-r .5s var(--spring) .08s; }
-
 /* whatsapp button on phones */
 .wa-fab { display: none; position: fixed; right: 16px; bottom: 16px; z-index: 40; width: 60px; height: 60px; place-items: center; border-radius: 50%; background: #35c46f; border: var(--bw) solid var(--ink); box-shadow: 4px 4px 0 var(--ink); transition: transform .15s var(--spring); }
 .wa-fab:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
-@media (max-width: 900px) { .wa-fab { display: grid; } .corner { width: 104px; left: 10px; } }
+@media (max-width: 900px) { .wa-fab { display: grid; } }
 
 /* theme toggle */
 .theme { width: 46px; height: 46px; flex: none; padding: 0; background: #fff; border: var(--bw) solid var(--ink); border-radius: 50%; box-shadow: 3px 3px 0 var(--ink); cursor: pointer; display: grid; place-items: center; transition: transform .15s var(--spring); }
@@ -505,7 +494,6 @@ main > .section:first-child { min-height: 70vh; }
 [data-theme="dark"] .voice .link, [data-theme="dark"] .cat__more, [data-theme="dark"] .sticker .link { color: var(--ink); }
 [data-theme="dark"] .meet__item { color: #f6f0e4; }
 [data-theme="dark"] .logo { color: #f6f0e4; }
-[data-theme="dark"] .corner, [data-theme="dark"] .receipt { filter: drop-shadow(3px 3px 0 #05030b); }
 [data-theme="dark"] .receipt { filter: drop-shadow(7px 7px 0 #05030b); }
 [data-theme="dark"] .hero .receipt { filter: drop-shadow(7px 7px 0 var(--ink)); }
 .trail { top: calc(100% - 12px); height: 20px; }
