@@ -225,6 +225,53 @@
     catList.appendChild(li);
   });
 
+  // котики на главной (первые шесть)
+  var teaser = document.getElementById("catTeaser");
+  if (teaser) cfg.cats.slice(0, 6).forEach(function (cat, i) {
+    var coat = cat.id === "kurama" ? { fill: "#ff8a2b", stripes: true } : COATS[i % COATS.length];
+    var li = document.createElement("li");
+    li.setAttribute("data-reveal", "pop");
+    li.style.setProperty("--d", (i * 0.06) + "s");
+    var a = document.createElement("a");
+    a.className = "meet__item";
+    a.href = "cats";
+    var ava = document.createElement("div");
+    ava.className = "cat__ava";
+    ava.innerHTML = catFace(coat, ((i * 1.7) % 5).toFixed(1));
+    var img = document.createElement("img");
+    img.src = "img/cats/" + cat.id + ".jpg";
+    img.alt = cat.name;
+    img.loading = "lazy";
+    img.addEventListener("load", function () { ava.classList.add("has-photo"); });
+    img.addEventListener("error", function () { img.remove(); });
+    ava.appendChild(img);
+    var name = document.createElement("span");
+    name.textContent = cat.name;
+    a.appendChild(ava); a.appendChild(name); li.appendChild(a);
+    teaser.appendChild(li);
+  });
+
+  // цифры считаются при появлении
+  document.querySelectorAll("[data-count]").forEach(function (n) {
+    var target = parseFloat(n.getAttribute("data-count")), dec = Number(n.getAttribute("data-dec") || 0);
+    var suf = n.getAttribute("data-suffix") || "";
+    function fmt(v) { return v.toFixed(dec).replace(".", ",") + suf; }
+    n.textContent = fmt(target);
+    if (reduce || !("IntersectionObserver" in window)) return;
+    n.textContent = fmt(0);
+    var io2 = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      io2.disconnect();
+      var t0 = performance.now();
+      (function step(t) {
+        var k = Math.min(1, (t - t0) / 1100), e = 1 - Math.pow(1 - k, 3);
+        n.textContent = fmt(target * e);
+        if (k < 1) requestAnimationFrame(step);
+      })(t0);
+    }, { threshold: 0.6 });
+    io2.observe(n);
+  });
+
   // мастер-классы
 
   var classList = document.getElementById("classList");
