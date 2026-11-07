@@ -372,13 +372,32 @@
   }
   applyTheme(document.documentElement.getAttribute("data-theme"));
   if (themeBtn) themeBtn.addEventListener("click", function () {
-    var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
     var root = document.documentElement;
+    var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    function save() { try { localStorage.setItem("kotiko-theme", next); } catch (e) {} }
+
+    // плавная волна от кнопки (View Transitions), если браузер умеет
+    if (document.startViewTransition && !reduce) {
+      var r = themeBtn.getBoundingClientRect();
+      var x = r.left + r.width / 2, y = r.top + r.height / 2;
+      var end = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+      var vt = document.startViewTransition(function () { applyTheme(next); });
+      vt.ready.then(function () {
+        root.animate(
+          { clipPath: ["circle(0px at " + x + "px " + y + "px)", "circle(" + end + "px at " + x + "px " + y + "px)"] },
+          { duration: 700, easing: "cubic-bezier(.4, 0, .2, 1)", pseudoElement: "::view-transition-new(root)" }
+        );
+      }).catch(function () {});
+      save();
+      return;
+    }
+
+    // запасной вариант: плавная смена цветов
     root.classList.add("theme-anim");
     clearTimeout(window.__themeT);
-    window.__themeT = setTimeout(function () { root.classList.remove("theme-anim"); }, 600);
+    window.__themeT = setTimeout(function () { root.classList.remove("theme-anim"); }, 700);
     applyTheme(next);
-    try { localStorage.setItem("kotiko-theme", next); } catch (e) {}
+    save();
   });
 
   // шаги лапок в шапке показывают прогресс прокрутки

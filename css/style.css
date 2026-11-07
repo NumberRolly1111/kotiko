@@ -532,3 +532,8 @@ main > .section:first-child { min-height: 70vh; }
 .foot-made { margin-top: 14px; }
 .footer__in { display: none; }
 @media (max-width: 800px) { .footer__top { flex-direction: column; } .footer__nav { justify-content: flex-start; } }
+
+/* theme wave */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
