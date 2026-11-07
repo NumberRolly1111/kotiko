@@ -198,7 +198,6 @@ svg { display: block; }
 /* ticker strip across the hero edge */
 .ticker { position: relative; z-index: 5; margin: -44px -4vw -26px; padding: 14px 0; background: var(--ink); color: var(--butter); transform: rotate(-1.6deg); overflow: hidden; border-block: var(--bw) solid var(--ink); }
 .ticker__track { display: flex; width: max-content; animation: marquee 34s linear infinite; }
-.ticker:hover .ticker__track, .ticker.is-paused .ticker__track { animation-play-state: paused; }
 .ticker__group { display: flex; align-items: center; gap: 28px; padding-right: 28px; font: 600 clamp(17px, 2vw, 22px)/1 var(--display); white-space: nowrap; }
 .ticker__group svg { width: 26px; height: 26px; fill: var(--tang); flex: none; }
 
@@ -434,7 +433,6 @@ main > .section:first-child { min-height: 70vh; }
 .nf__code { font: 700 clamp(96px, 20vw, 220px)/.9 var(--display); letter-spacing: -.05em; color: var(--ink); }
 .nf__h { font-size: clamp(30px, 5vw, 56px); }
 @media (max-width: 800px) { .voices { grid-template-columns: 1fr; } }
-.ticker { cursor: pointer; }
 
 /* cat cards: tags and story toggle */
 .cats { align-items: start; }
