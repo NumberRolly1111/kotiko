@@ -50,7 +50,7 @@
 
 <header class="topbar" id="top">
   <div class="wrap topbar__in">
-    <a class="logo" href="#top" aria-label="Kotiko">
+    <a class="logo" href="index.html" aria-label="Kotiko">
       <svg class="logo__mark" viewBox="0 0 44 40" aria-hidden="true">
         <path d="M5 14 8 2l11 7zM39 14 36 2 25 9z" fill="#25252d" stroke="#1c1530" stroke-width="3" stroke-linejoin="round"/>
         <ellipse cx="22" cy="24" rx="18" ry="13.500" fill="#25252d" stroke="#1c1530" stroke-width="3"/><ellipse cx="22" cy="29" rx="8.500" ry="6.500" fill="#fff"/>
@@ -59,13 +59,14 @@
       </svg>
       <span>Kotiko</span>
     </a>
-    <nav class="nav" aria-label="Основная навигация">
-      <a href="#price">Цены</a>
-      <a href="#cats">Котики</a>
-      <a href="#classes">Мастер-классы</a>
-      <a href="#help">Помощь</a>
-      <a href="#contacts">Контакты</a>
+    <nav class="nav" id="nav" aria-label="Основная навигация">
+      <a href="index.html" aria-current="page">Цены</a>
+      <a href="cats.html">Котики</a>
+      <a href="classes.html">Мастер-классы</a>
+      <a href="help.html">Помощь</a>
+      <a href="contacts.html">Контакты</a>
     </nav>
+    <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
     <a class="btn btn--tang btn--sm" href="#" data-wa="hello">WhatsApp</a>
   </div>
 </header>
@@ -101,8 +102,8 @@
         </li>
       </ul>
       <div class="hero__actions">
-        <a class="btn btn--ink" href="#contacts">Как добраться</a>
-        <a class="btn btn--white" href="#cats">Познакомиться с котиками</a>
+        <a class="btn btn--ink" href="contacts.html">Как добраться</a>
+        <a class="btn btn--white" href="cats.html">Познакомиться с котиками</a>
       </div>
     </div>
 
@@ -213,64 +214,19 @@
   </div>
 </section>
 
-<section class="section section--paper" id="cats">
+
+
+
+
+<section class="section section--paper" id="more">
   <div class="wrap">
-    <h2 data-reveal="rise">Знакомьтесь с котиками</h2>
-    <p class="lead" data-reveal="rise">Здесь живут спасённые котики: кого-то нашли на улице, кого-то привезли из приюта или из семьи. О пристройстве и о тех, кто ищет дом, мы рассказываем <a class="link" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">в инстаграме</a>.</p>
-    <ul class="cats" id="catList"></ul>
-  </div>
-</section>
-
-<section class="section section--ink" id="classes">
-  <div class="wrap">
-    <h2 data-reveal="rise">Мастер-классы</h2>
-    <p class="lead lead--ink" data-reveal="rise">Цена указана за одного человека. Всё, что сделаете, заберёте с собой.</p>
-    <ul class="classes" id="classList"></ul>
-  </div>
-</section>
-
-<section class="section section--orange" id="help">
-  <div class="wrap help">
-    <div class="help__text">
-      <h2 data-reveal="rise">Помогите котикам</h2>
-      <p data-reveal="rise">Котики у нас спасённые, и вы можете помочь им заботиться о них. Кроме донатов, можно принести то, что нужно в кафе каждый день.</p>
-      <ul class="chip-list">
-        <li class="sticker sticker--sm" style="--r:-2deg" data-reveal="pop">Сухой корм Fitmin с олениной</li>
-        <li class="sticker sticker--sm" style="--r:1.5deg" data-reveal="pop">Бентонитовый наполнитель</li>
-        <li class="sticker sticker--sm" style="--r:-1deg" data-reveal="pop">Хозяйственные товары</li>
-      </ul>
-      <a class="btn btn--ink" href="#" data-wa="help">Узнать, как помочь</a>
-    </div>
-    <svg class="yarn" id="yarn" viewBox="0 0 260 220" aria-hidden="true">
-      <path d="M52 188c-30 8-40 26-10 28s60-12 86-24" fill="none" stroke="#1c1530" stroke-width="5" stroke-linecap="round"/>
-      <g class="yarn__ball">
-        <circle cx="140" cy="110" r="82" fill="#fff" stroke="#1c1530" stroke-width="5"/>
-        <path d="M70 80c36 14 84 12 140-8M62 118c40 18 96 16 154-10M80 156c34 8 76 4 112-16M110 36c-14 40-12 90 8 142M158 30c14 40 16 92-6 148" fill="none" stroke="#1c1530" stroke-width="4" stroke-linecap="round"/>
-      </g>
-    </svg>
-  </div>
-</section>
-
-<section class="section section--ink" id="contacts">
-  <div class="wrap contacts">
-    <h2 data-reveal="rise">Как нас найти</h2>
-    <dl class="contacts__list">
-      <div data-reveal="rise"><dt>Адрес</dt><dd>улица Розы Баглановой, 3/1, Нура район, Астана</dd></div>
-      <div data-reveal="rise" style="--d:.06s">
-        <dt>Часы работы</dt>
-        <dd>Будни с 12:00 до 22:00<br>Выходные и праздники с 11:00 до 22:00</dd>
-      </div>
-      <div data-reveal="rise" style="--d:.12s"><dt>Телефон и WhatsApp</dt><dd><a href="tel:+77074101312">+7 707 410 13 12</a></dd></div>
-      <div data-reveal="rise" style="--d:.18s"><dt>Рейтинг в 2ГИС</dt><dd>4,9 · 832 оценки · <a class="link link--light" href="https://2gis.kz/astana/firm/70000001091591591/tab/reviews" target="_blank" rel="noopener">отзывы</a></dd></div>
-    </dl>
-    <div class="contacts__links">
-      <a class="btn btn--butter" href="https://2gis.kz/astana/firm/70000001091591591" target="_blank" rel="noopener">Открыть в 2ГИС</a>
-      <a class="btn btn--tang" href="#" data-wa="hello">WhatsApp</a>
-      <a class="btn btn--white" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">Instagram</a>
-      <a class="btn btn--white" href="https://www.tiktok.com/@kotiko_cafe" target="_blank" rel="noopener">TikTok</a>
-      <a class="btn btn--white" href="https://www.threads.com/@kotiko_cafe" target="_blank" rel="noopener">Threads</a>
-    </div>
-    <p class="contacts__note">Правила посещения собраны в актуальных историях инстаграма <a class="link link--light" href="https://www.instagram.com/kotiko_cafe/" target="_blank" rel="noopener">@kotiko_cafe</a>.</p>
+    <h2 data-reveal="rise">Что ещё у нас есть</h2>
+    <ul class="tiles">
+      <li data-reveal="pop" style="--r:-1.2deg"><a class="sticker tile" href="cats.html"><span class="tile__n">15</span><h3>Котики</h3><p>Познакомьтесь со всеми жителями кафе.</p></a></li>
+      <li data-reveal="pop" style="--r:1deg;--d:.08s"><a class="sticker tile" href="classes.html"><span class="tile__n">4</span><h3>Мастер-классы</h3><p>Лапки, свечи, холсты. Всё заберёте с собой.</p></a></li>
+      <li data-reveal="pop" style="--r:-.8deg;--d:.16s"><a class="sticker tile" href="help.html"><span class="tile__n">♥</span><h3>Помощь котикам</h3><p>Корм, наполнитель, хозтовары.</p></a></li>
+      <li data-reveal="pop" style="--r:1.2deg;--d:.24s"><a class="sticker tile" href="contacts.html"><span class="tile__n">⌖</span><h3>Как нас найти</h3><p>Адрес, часы работы, телефон.</p></a></li>
+    </ul>
   </div>
 </section>
 
@@ -281,6 +237,7 @@
     <span>© <span id="year"></span> Kotiko</span>
     <span>Котокафе, Астана</span>
   </div>
+  <p class="foot-made"><span>Создано</span><a href="https://instagram.com/bauyrzhanov_12_" target="_blank" rel="noopener">@bauyrzhanov_12_</a></p>
 </footer>
 
 <script src="js/data.js"></script>

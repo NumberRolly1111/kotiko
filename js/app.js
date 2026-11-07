@@ -38,6 +38,7 @@
   function renderStatus() {
     var box = document.getElementById("status");
     var text = document.getElementById("statusText");
+    if (!box) return;
     var now = astanaNow();
     var today = hoursFor(now.day);
     var open = now.hour >= today.from && now.hour < today.to;
@@ -89,7 +90,9 @@
     })(t0);
   }
 
+  var hasCalc = !!el.total;
   function renderCalc() {
+    if (!hasCalc) return;
     var rate = cfg.rate[state.mode];
     rollTo(rate * state.minutes * state.people);
     el.detail.textContent = rate + " ₸ × " + state.minutes + " мин × " + state.people + " чел.";
@@ -107,22 +110,22 @@
     });
   }
 
-  el.modeBtns.forEach(function (b) {
+  if (hasCalc) el.modeBtns.forEach(function (b) {
     b.addEventListener("click", function () { state.mode = b.getAttribute("data-mode"); renderCalc(); });
   });
-  el.chips.forEach(function (b) {
+  if (hasCalc) el.chips.forEach(function (b) {
     b.addEventListener("click", function () { state.minutes = Number(b.getAttribute("data-min")); renderCalc(); });
   });
-  el.slider.addEventListener("input", function () { state.minutes = Number(el.slider.value); renderCalc(); });
-  document.getElementById("peopleMinus").addEventListener("click", function () {
+  if (hasCalc) el.slider.addEventListener("input", function () { state.minutes = Number(el.slider.value); renderCalc(); });
+  if (hasCalc) document.getElementById("peopleMinus").addEventListener("click", function () {
     state.people = Math.max(1, state.people - 1); renderCalc();
   });
-  document.getElementById("peoplePlus").addEventListener("click", function () {
+  if (hasCalc) document.getElementById("peoplePlus").addEventListener("click", function () {
     state.people = Math.min(10, state.people + 1); renderCalc();
   });
 
   // дата на чеке
-  document.getElementById("ticketDate").textContent =
+  if (document.getElementById("ticketDate")) document.getElementById("ticketDate").textContent =
     new Intl.DateTimeFormat("ru-RU", { timeZone: cfg.timezone, day: "2-digit", month: "2-digit", year: "numeric" }).format(new Date());
 
   // котик над чеком следит за курсором
@@ -186,7 +189,7 @@
 
   var rots = [-1.2, 0.9, -0.6, 1.3, -1, 0.7];
   var catList = document.getElementById("catList");
-  cfg.cats.forEach(function (cat, i) {
+  if (catList) cfg.cats.forEach(function (cat, i) {
     var coat = cat.id === "kurama" ? { fill: "#ff8a2b", stripes: true } : COATS[i % COATS.length];
     var li = document.createElement("li");
     li.className = "cat sticker";
@@ -221,7 +224,7 @@
 
   var classList = document.getElementById("classList");
   var classRots = [-1, 1.1, 0.8, -1.2];
-  cfg.classes.forEach(function (c, i) {
+  if (classList) cfg.classes.forEach(function (c, i) {
     var li = document.createElement("li");
     li.className = "class sticker";
     li.style.setProperty("--r", classRots[i % classRots.length] + "deg");
@@ -292,7 +295,20 @@
 
   // старт
 
-  document.getElementById("year").textContent = new Date().getFullYear();
+  var yr = document.getElementById("year");
+  if (yr) yr.textContent = new Date().getFullYear();
+
+  // мобильное меню
+  var burger = document.getElementById("burger"), nav = document.getElementById("nav");
+  if (burger && nav) {
+    burger.addEventListener("click", function () {
+      var open = nav.classList.toggle("is-open");
+      burger.setAttribute("aria-expanded", String(open));
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("is-open")) { burger.click(); burger.focus(); }
+    });
+  }
   renderCalc();
   renderStatus();
   setInterval(renderStatus, 60000);
