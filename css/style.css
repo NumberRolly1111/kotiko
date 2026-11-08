@@ -557,3 +557,4 @@ main > .section:first-child { min-height: 70vh; }
 .nf2 .nf__btns { display: flex; flex-direction: column; gap: 14px; }
 .nf2 .btn { width: 100%; box-sizing: border-box; }
 html[data-theme="dark"] .nf2__card, html[data-theme="dark"] .nf2__card::after { --x: 0; }
+[data-theme="dark"] .ticker { background: #0d0918; border-block-color: var(--butter); }
