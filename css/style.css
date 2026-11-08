@@ -558,3 +558,5 @@ main > .section:first-child { min-height: 70vh; }
 .nf2 .btn { width: 100%; box-sizing: border-box; }
 html[data-theme="dark"] .nf2__card, html[data-theme="dark"] .nf2__card::after { --x: 0; }
 [data-theme="dark"] .ticker { background: #0d0918; border-block-color: var(--butter); }
+@media (min-width: 1500px) { .ticker { transform: rotate(-1.1deg); } }
+@media (min-width: 1800px) { .ticker { transform: rotate(-.8deg); margin-top: -36px; } }
